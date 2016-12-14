@@ -5,7 +5,7 @@
 
 	<groupId>com.yunyou</groupId>
 	<artifactId>yunyou-view</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>${project.version}</version>
 	<packaging>jar</packaging>
 
 	<name>yunyou-view</name>
