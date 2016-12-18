@@ -25,5 +25,11 @@
 		</plugins>
 	</build>
 
-
+	<dependencies>
+		<dependency>
+			<groupId>com.yunyou</groupId>
+			<artifactId>yunyou-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 </project>

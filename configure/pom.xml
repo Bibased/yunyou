@@ -29,6 +29,11 @@
             <artifactId>yunyou-view</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.yunyou</groupId>
+            <artifactId>yunyou-dal</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

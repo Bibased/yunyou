@@ -24,6 +24,12 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<dependencies>
+		<dependency>
+			<groupId>com.yunyou</groupId>
+			<artifactId>yunyou-dal</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 
 </project>
