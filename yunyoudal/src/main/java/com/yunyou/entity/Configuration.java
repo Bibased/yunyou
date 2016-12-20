@@ -40,5 +40,4 @@ public class Configuration {
     public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
-
 }
