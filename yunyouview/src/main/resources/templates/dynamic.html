@@ -1,0 +1,66 @@
+<head>
+    <title>Wander.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="js/jquery-2.0.0.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<style>
+    .pic-box{
+        display:inline-block;
+
+    }
+    .dynamic-picture{
+        width:200px;
+        height:150px;
+    }
+    .send-time{
+        float:right;
+    }
+    .dynamic-footer ul li{
+        list-style: none;
+        display: inline;
+        margin-left:5px;
+    }
+    .send-place img{
+        width:20px;
+        height:20px;
+    }
+    .send-place{
+        display: inline-block !important;
+    }
+    .send-place span{
+        display: inline-block;
+    }
+</style>
+<div class="dynamic-item">
+    <div style="float:left;text-align: center;width:150px;">
+        <img src="img/fake-user.jpg" style="width:150px;height:150px;">
+        <p style="margin-top: 7px;"><strong >Sophia</strong></p>
+    </div>
+    <div class="inline-block" style="width:790px;margin-left:10px;">
+        <a class="inline-block" style="margin-bottom:7px;">刚刚结束非洲之旅，土著人民好热情，差点就要把我烤来吃掉啦，好吓人~</a>
+        <div id="pic-list" >
+            <div class="pic-box">
+                <img class="dynamic-picture" src="img/spot0.jpeg">
+            </div>
+            <div class="pic-box">
+                <img class="dynamic-picture" src="img/spot1.jpeg">
+            </div>
+        </div>
+        <div class="dynamic-footer">
+           <ul style="float:right;">
+               <li class="share"><a >转发(6)</a></li>
+               <li class="comment"><a >评论(6)</a></li>
+               <li class="great"><a >点赞(6)</a></li>
+           </ul>
+            <div style="clear: right;">
+                <a class="send-place"><img src="img/location.png" alt=""><span>Africa</span></a>
+                <span class="send-time">2016.11.30 11:20:32</span>
+            </div>
+        </div>
+    </div>
+</div>

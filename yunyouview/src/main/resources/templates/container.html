@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wander.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="js/jquery-2.0.0.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<style>
+    .web-container{
+        max-width:960px;
+        margin:0 auto;
+    }
+    .inline-block{
+        display:inline-block;
+    }
+    * {
+        font-size:13px;
+        font-family: "宋体",sans-serif;
+    }
+    #tabs .tab{
+        display:inline-block;
+        background:rgba(204,255,255,0.5);
+    }
+    #tabs .tab a{
+        height:60px;
+        line-height:60px;
+        color:black;
+        font-size:15px;
+        text-align: center;
+        width:120px;
+        display:inline-block;
+    }
+
+</style>
+<body>
+    <div class="web-container">
+        <div id="header" style="padding:10px 0;">
+            <div id="site-logo" class="inline-block">
+                <a> Wander.com</a>
+            </div>
+            <div class="inline-block" style="float:right;">
+                <div id="search-box" class="inline-block">
+                    <input name="keyword" type="text">
+                </div>
+                <img src="img/info.png" style="width:20px;height:20px;">
+                <!--<img src="img/user_icon.png">-->
+                <span>Daley</span>
+            </div>
+        </div>
+        <div id="nav" style="position:relative;margin-bottom:20px;">
+            <div id="tabs">
+                <div class="tab"><a href="dynamic.htm" id="dynamic">动态</a></div>
+                <div class="tab"><a href="dynamic.htm" id="advice">攻略</a></div>
+                <div class="tab"><a href="dynamic.htm" id="activity">活动</a></div>
+            </div>
+            <a href="spot.htm"  style="position:absolute;right:0;bottom:0;">全部景点</a>
+        </div>
+        <div id="main-content" style="margin-top:20px;"></div>
+        <script>
+            /*$("#main-content").load("index.html");*/
+            $("#main-content").load("dynamic.html");
+        </script>
+        <div id="footer" style="background:rgba(245,245,245,1);padding:20px 0;margin-top:20px;height:100px;">
+
+        </div>
+    </div>
+</body>
+</html>
