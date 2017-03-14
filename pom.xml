@@ -14,15 +14,15 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
 	</properties>
-	<name>yunyou-service</name>
+	<name>yunyou-parent</name>
 	<description>Demo project for Spring Boot</description>
 	<modules>
 		<module>yunyoudal</module>
 		<module>yunyouservice</module>
-		<module>yunyouview</module>
-		<module>configure</module>
+		<module>yunyouweb</module>
+        <module>common</module>
 
-	</modules>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

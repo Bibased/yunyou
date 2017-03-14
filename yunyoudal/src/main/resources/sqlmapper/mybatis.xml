@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunyou.mapper.UserMapper">
-    <resultMap id="userMap" type="com.yunyou.entity.User">
+<mapper namespace="com.yunyou.dal.mapper.UserMapper">
+    <resultMap id="userMap" type="com.yunyou.dal.entity.User">
         <id column="id"  property="id" />
         <result column="name" property="name"></result>
     </resultMap>
@@ -10,7 +10,7 @@
         id,name
     </sql>
     <!-- useGeneratedKeys="true" -->
-    <insert id="insert" parameterType="com.yunyou.entity.User">
+    <insert id="insert" parameterType="com.yunyou.dal.entity.User">
         insert into user(id,name) VALUES (#{id},#{name})
     </insert>
 
