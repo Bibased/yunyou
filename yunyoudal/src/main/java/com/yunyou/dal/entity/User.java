@@ -1,20 +1,24 @@
 package com.yunyou.dal.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
  * Created by lds on 2016/12/18.
  */
+@Entity
 public class User implements Serializable{
     private static final long serialVersionUID = 7621305592543119629L;
-    private Integer id;
+    @Id
+    private Long id;
     private String name;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
