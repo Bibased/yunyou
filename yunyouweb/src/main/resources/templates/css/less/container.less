@@ -1,0 +1,47 @@
+@headerHeight:66px;
+@bcol:#000;
+.web-container{
+  width:90%;
+  overflow: hidden;
+  margin-left:5%;
+  position:relative;
+}
+#header{
+  height:@headerHeight;
+  box-sizing: border-box;
+}
+#site-logo a{
+  color: @bcol;
+  font-family: 'Ubuntu',sans-serif;
+  font-size:3em;
+  line-height: @headerHeight;
+}
+#nav{
+  display: inline-block;
+  width: 100%;
+  float: right;
+  padding-top: @headerHeight/3;
+}
+#nav li{
+  display:inline-block;
+  float: left;
+  font-size:1.384em;
+  color:@bcol;
+  margin: 0 1em;
+  padding-bottom: 0.5em;
+  box-sizing: border-box;
+}
+#search-box,#user-pic,#info{
+  margin-top: @headerHeight/3;
+  float: right;
+}
+.tab:hover{
+  border-bottom: 3px solid dodgerblue;
+}
+#search-box{
+  width: 60%;
+}
+#search-box input{
+  width: 98%;
+  height: 31px;
+}

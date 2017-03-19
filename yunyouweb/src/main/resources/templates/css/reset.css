@@ -1,0 +1,88 @@
+.ib {
+  display: inline-block;
+}
+a,
+a:hover {
+  text-decoration: none !important;
+}
+* {
+  font-family: 'Ubuntu', "宋体", sans-serif;
+  font-size: 13px;
+}
+@media only screen and (max-width: 768px) {
+  * {
+    font-size: 10px;
+  }
+}
+.col1 {
+  width: 8.333333333333334%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col2 {
+  width: 16.666666666666668%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col3 {
+  width: 25%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col4 {
+  width: 33.333333333333336%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col5 {
+  width: 41.666666666666664%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col6 {
+  width: 50%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col7 {
+  width: 58.333333333333336%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col8 {
+  width: 66.66666666666667%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col9 {
+  width: 75%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col10 {
+  width: 83.33333333333333%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col11 {
+  width: 91.66666666666667%;
+  display: block;
+  float: left;
+  height: 100%;
+}
+.col12 {
+  width: 100%;
+  display: block;
+  float: left;
+  height: 100%;
+}

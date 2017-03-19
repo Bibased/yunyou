@@ -1,24 +1,18 @@
 <head>
     <title>Wander.com</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="js/jquery-2.0.0.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="js/bootstrap.min.js"></script>
 </head>
-    <style>
-        .topic-card{
-            margin-left:3.65%;
-            boarder:none;
-            background:rgb(245,245,245);
-            width:22%;
-            height:200px;
-        }
-        .spot-img{
-            max-width:960px !important;
-            height:640px !important;
+    <style >
+        .item{
+            height:660px;
+            overflow: hidden;
         }
         .left-arrow,.right-arrow{
             position: relative;
@@ -39,15 +33,11 @@
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
             </ol>
             <!-- 轮播（Carousel）项目 -->
             <div class="carousel-inner">
                 <div class="item active">
                     <img src="img/spot0.jpeg" class="spot-img" alt="">
-                </div>
-                <div class="item">
-                    <img src="img/spot1.jpeg" class="spot-img" alt="Second slide">
                 </div>
                 <div class="item">
                     <img src="img/spot2.jpeg" class="spot-img" alt="Third slide">
@@ -66,6 +56,7 @@
                 function removePx(str) {
                     return str.substr(0,str.length-2);
                 }
+                //调整左右箭头的垂直居中
                 $(".left-arrow,.right-arrow").css({
                     "position":"relative",
                     "top":function () {
@@ -77,17 +68,90 @@
             </script>
         </div>
     </div>
-    <div style="margin-top:20px;">
-        <div class="inline topic-card" style="margin-left: 0;">
 
-        </div>
-        <div class="inline topic-card">
-
-        </div>
-        <div class="inline topic-card">
-
-        </div>
-        <div class="inline topic-card">
-
-        </div>
+<div class="dynamics">
+    <div class="grid">
+        <h4>活动</h4>
+        <figure >
+            <img src="img/40.jpg" alt="img21"/>
+            <figcaption>
+                <h2>阿拉斯加之旅</h2>
+                <div>
+                    <p> <span>buka 创建于 2017/6/1</span> </p>
+                    <p><span>￥3000 -- ￥4000 </span><span>2017/7/1 -- 2017/7/6</span> </p>
+                    <p><span> 3/7 已报名 </span> <span>3天后报名截止</span></p>
+                </div>
+            </figcaption>
+            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+        </figure>
+        <figure >
+            <img src="img/40.jpg" alt="img21"/>
+            <figcaption>
+                <h2>阿拉斯加之旅</h2>
+                <div>
+                    <p> <span>buka 创建于 2017/6/1</span></p>
+                    <p><span>￥3000 -- ￥4000 </span><span>2017/7/1 -- 2017/7/6</span> </p>
+                    <p><span> 3/7 已报名 </span> <span>3天后报名截止</span></p>
+                </div>
+            </figcaption>
+            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+        </figure>
+        <figure >
+            <img src="img/40.jpg" alt="img21"/>
+            <figcaption>
+                <h2>阿拉斯加之旅</h2>
+                <div>
+                    <p> <span>buka 创建于 2017/6/1</span> </p>
+                    <p><span>￥3000 -- ￥4000 </span><span>2017/7/1 -- 2017/7/6</span> </p>
+                    <p><span> 3/7 已报名 </span> <span>3天后报名截止</span></p>
+                </div>
+            </figcaption>
+            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+        </figure>
     </div>
+</div>
+
+<div class="strategy">
+    <div class="grid">
+        <h4>攻略</h4>
+        <figure >
+            <img src="img/41.jpg" alt="img21"/>
+            <figcaption>
+                <h2>用十四天，写就一部《十城记》--JOJO出品</h2>
+                <div>
+                    <p><span>JOJO带你游世界 发表于 2017-03-13</span></p>
+                    <p><span>￥3000 -- ￥4000</span> <span>10/3 -- 10/6</span></p>
+                    <p><span>A-B-C-D</span></p>
+                </div>
+            </figcaption>
+            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+        </figure>
+
+        <figure >
+            <img src="img/41.jpg" alt="img21"/>
+            <figcaption>
+                <h2>用十四天，写就一部《十城记》--JOJO出品</h2>
+                <div>
+                    <p><span>JOJO带你游世界 发表于 2017-03-13</span></p>
+                    <p><span>￥3000 -- ￥4000</span> <span>10/3 -- 10/6</span></p>
+                    <p><span>A-B-C-D</span></p>
+                </div>
+            </figcaption>
+            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+        </figure>
+
+        <figure >
+            <img src="img/41.jpg" alt="img21"/>
+            <figcaption>
+                <h2>用十四天，写就一部《十城记》--JOJO出品</h2>
+                <div>
+                    <p><span>JOJO带你游世界 发表于 2017-03-13</span></p>
+                    <p><span>￥3000 -- ￥4000</span> <span>10/3 -- 10/6</span></p>
+                    <p><span>A-B-C-D</span></p>
+                </div>
+            </figcaption>
+            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+        </figure>
+
+    </div>
+</div>

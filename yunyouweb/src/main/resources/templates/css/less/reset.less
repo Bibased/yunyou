@@ -1,0 +1,29 @@
+
+.ib{
+  display:inline-block;
+}
+a,a:hover{
+  text-decoration: none !important;
+}
+* {
+
+  font-family:'Ubuntu', "宋体",sans-serif;
+  font-size: 13px;
+}
+
+@media only screen and (max-width: 768px){
+  *{
+    font-size:10px;
+  }
+}
+.generate-columns(12);
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .col@{i} {
+    width: (@i * 100% / @n);
+    display: block;
+    float: left;
+    height: 100%;
+  }
+  .generate-columns(@n, (@i + 1));
+}
