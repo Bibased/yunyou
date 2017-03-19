@@ -2,7 +2,6 @@ package com.yunyou.dal.dao;
 
 import com.yunyou.dal.entity.User;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 
