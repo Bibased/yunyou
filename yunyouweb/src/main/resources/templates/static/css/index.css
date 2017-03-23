@@ -15,27 +15,26 @@
     margin-bottom: 22px;
 }
 
-figure{
+.grid figure{
     display:inline-block;
     width:30%;
     margin:0 1%;
     overflow: hidden;
-    height: 260px;
     position:relative;
     box-sizing: content-box;
 }
-figure img {
+.grid figure img {
     position: relative;
     display: block;
     max-width: 100%;
-    height: 260px;
+    height: auto;
     -webkit-transition: opacity 1s, -webkit-transform 1s;
     transition: opacity 1s, transform 1s;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
-figure figcaption {
+.grid figure figcaption {
     padding:4em 1.2em 0 1.2em;
     color: #fff;
     position: absolute;
@@ -47,7 +46,7 @@ figure figcaption {
     text-align: left;
 
 }
-figure .favor{
+.grid figure .favor{
     position:absolute;
     bottom:0.5em;
     right:1em;
@@ -55,7 +54,7 @@ figure .favor{
     z-index: 999;
     color:#FFFFFF;
 }
-figure .favor span{
+.grid figure .favor span{
     font-size: 20px;
     color:#FFFFFF;
 }
@@ -79,7 +78,7 @@ figcaption p span{
     margin-right: 1em;
     font-size: 1em;
 }
-figure:hover img {
+.grid figure:hover img {
     -webkit-transform: scale3d(1.1,1.1,1);
     transform: scale3d(1.1,1.1,1);
 }

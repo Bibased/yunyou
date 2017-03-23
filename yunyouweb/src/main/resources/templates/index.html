@@ -1,157 +1,161 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Wander.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/reset.css" rel="stylesheet">
+    <link href="static/css/common.css" rel="stylesheet">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="js/jquery-2.0.0.js"></script>
+    <script src="static/js/jquery-2.0.0.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="js/bootstrap.min.js"></script>
-</head>
+    <script src="static/js/bootstrap.min.js"></script>
+    <link href="static/css/index.css" rel="stylesheet">
     <style >
         .item{
-            height:660px;
             overflow: hidden;
         }
-        .left-arrow,.right-arrow{
-            position: relative;
-            top:50%;
+        #spot-carousel{
+            margin-top:-50px;
         }
-        .left-arrow{
-            left:-40px;
+        .carousel-indicators li{
+            margin-right: 20px !important;
         }
-        .right-arrow{
-            right:-40px;
+        #spot-carousel,.dynamics{
+            margin-bottom:20px;
         }
     </style>
+</head>
+<body>
+<div class="web-container">
+    <script>
+        $("#header-container").load("header.html");
+        $("#footer-container").load("footer.html");
+    </script>
+    <div  id="header-container" th:insert="~{header::header}"></div>
 
-    <div id="spot-carousel">
-        <div id="myCarousel" class="carousel slide">
-            <!-- 轮播（Carousel）指标 -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <!-- 轮播（Carousel）项目 -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img src="img/spot0.jpeg" class="spot-img" alt="">
+    <div class="main-content">
+        <div id="spot-carousel">
+            <div id="myCarousel" class="carousel slide">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="static/img/spot0.jpeg" class="spot-img" alt="">
+                    </div>
+                    <div class="item">
+                        <img src="static/img/spot2.jpeg" class="spot-img" alt="Third slide">
+                    </div>
+                    <div class="item">
+                        <img src="static/img/spot3.jpeg" class="spot-img" alt="Third slide">
+                    </div>
                 </div>
-                <div class="item">
-                    <img src="img/spot2.jpeg" class="spot-img" alt="Third slide">
-                </div>
-                <div class="item">
-                    <img src="img/spot3.jpeg" class="spot-img" alt="Third slide">
-                </div>
+                <!--轮播（Carousel）导航-->
+                <!--<div id="control-box">-->
+                    <!--<a class="carousel-control" id="left-arrow" href="#myCarousel"-->
+                       <!--data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>-->
+                    <!--<a class="carousel-control" id="right-arrow" href="#myCarousel"-->
+                       <!--data-slide="next"></a>-->
+                <!--</div>-->
+
             </div>
-            <!-- 轮播（Carousel）导航 -->
-            <a class="carousel-control left" href="#myCarousel"
-               data-slide="prev"><span class="left-arrow">&lsaquo;</span></a>
-            <a class="carousel-control right" href="#myCarousel"
-               data-slide="next"><span class="right-arrow">&rsaquo;</span></a>
-            <script>
-                /*把"16px"转为16*/
-                function removePx(str) {
-                    return str.substr(0,str.length-2);
-                }
-                //调整左右箭头的垂直居中
-                $(".left-arrow,.right-arrow").css({
-                    "position":"relative",
-                    "top":function () {
-                        var offset = (removePx($(this).parent().css('height'))-removePx($(this).css('height')))/2-2+'px';
-                        return offset;
-                    }
-                });
+        </div>
 
-            </script>
+        <div class="dynamics">
+        <div class="grid">
+            <h4>活动</h4>
+            <figure >
+                <img src="static/img/40.jpg" alt="img21"/>
+                <figcaption>
+                    <h2>阿拉斯加之旅</h2>
+                    <div>
+                        <p> <span>buka 创建于 2017/6/1</span> </p>
+                        <p><span>￥3000 -- ￥4000 </span><span>2017/7/1 -- 2017/7/6</span> </p>
+                        <p><span> 3/7 已报名 </span> <span>3天后报名截止</span></p>
+                    </div>
+                </figcaption>
+                <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+            </figure>
+            <figure >
+                <img src="static/img/40.jpg" alt="img21"/>
+                <figcaption>
+                    <h2>阿拉斯加之旅</h2>
+                    <div>
+                        <p> <span>buka 创建于 2017/6/1</span></p>
+                        <p><span>￥3000 -- ￥4000 </span><span>2017/7/1 -- 2017/7/6</span> </p>
+                        <p><span> 3/7 已报名 </span> <span>3天后报名截止</span></p>
+                    </div>
+                </figcaption>
+                <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+            </figure>
+            <figure >
+                <img src="static/img/40.jpg" alt="img21"/>
+                <figcaption>
+                    <h2>阿拉斯加之旅</h2>
+                    <div>
+                        <p> <span>buka 创建于 2017/6/1</span> </p>
+                        <p><span>￥3000 -- ￥4000 </span><span>2017/7/1 -- 2017/7/6</span> </p>
+                        <p><span> 3/7 已报名 </span> <span>3天后报名截止</span></p>
+                    </div>
+                </figcaption>
+                <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+            </figure>
         </div>
     </div>
 
-<div class="dynamics">
-    <div class="grid">
-        <h4>活动</h4>
-        <figure >
-            <img src="img/40.jpg" alt="img21"/>
-            <figcaption>
-                <h2>阿拉斯加之旅</h2>
-                <div>
-                    <p> <span>buka 创建于 2017/6/1</span> </p>
-                    <p><span>￥3000 -- ￥4000 </span><span>2017/7/1 -- 2017/7/6</span> </p>
-                    <p><span> 3/7 已报名 </span> <span>3天后报名截止</span></p>
-                </div>
-            </figcaption>
-            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
-        </figure>
-        <figure >
-            <img src="img/40.jpg" alt="img21"/>
-            <figcaption>
-                <h2>阿拉斯加之旅</h2>
-                <div>
-                    <p> <span>buka 创建于 2017/6/1</span></p>
-                    <p><span>￥3000 -- ￥4000 </span><span>2017/7/1 -- 2017/7/6</span> </p>
-                    <p><span> 3/7 已报名 </span> <span>3天后报名截止</span></p>
-                </div>
-            </figcaption>
-            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
-        </figure>
-        <figure >
-            <img src="img/40.jpg" alt="img21"/>
-            <figcaption>
-                <h2>阿拉斯加之旅</h2>
-                <div>
-                    <p> <span>buka 创建于 2017/6/1</span> </p>
-                    <p><span>￥3000 -- ￥4000 </span><span>2017/7/1 -- 2017/7/6</span> </p>
-                    <p><span> 3/7 已报名 </span> <span>3天后报名截止</span></p>
-                </div>
-            </figcaption>
-            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
-        </figure>
+        <div class="strategy">
+        <div class="grid">
+            <h4>攻略</h4>
+            <figure >
+                <img src="static/img/41.jpg" alt="img21"/>
+                <figcaption>
+                    <h2>用十四天，写就一部《十城记》--JOJO出品</h2>
+                    <div>
+                        <p><span>JOJO带你游世界 发表于 2017-03-13</span></p>
+                        <p><span>￥3000 -- ￥4000</span> <span>10/3 -- 10/6</span></p>
+                        <p><span>A-B-C-D</span></p>
+                    </div>
+                </figcaption>
+                <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+            </figure>
+
+            <figure >
+                <img src="static/img/41.jpg" alt="img21"/>
+                <figcaption>
+                    <h2>用十四天，写就一部《十城记》--JOJO出品</h2>
+                    <div>
+                        <p><span>JOJO带你游世界 发表于 2017-03-13</span></p>
+                        <p><span>￥3000 -- ￥4000</span> <span>10/3 -- 10/6</span></p>
+                        <p><span>A-B-C-D</span></p>
+                    </div>
+                </figcaption>
+                <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+            </figure>
+
+            <figure >
+                <img src="static/img/41.jpg" alt="img21"/>
+                <figcaption>
+                    <h2>用十四天，写就一部《十城记》--JOJO出品</h2>
+                    <div>
+                        <p><span>JOJO带你游世界 发表于 2017-03-13</span></p>
+                        <p><span>￥3000 -- ￥4000</span> <span>10/3 -- 10/6</span></p>
+                        <p><span>A-B-C-D</span></p>
+                    </div>
+                </figcaption>
+                <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
+            </figure>
+
+        </div>
     </div>
-</div>
-
-<div class="strategy">
-    <div class="grid">
-        <h4>攻略</h4>
-        <figure >
-            <img src="img/41.jpg" alt="img21"/>
-            <figcaption>
-                <h2>用十四天，写就一部《十城记》--JOJO出品</h2>
-                <div>
-                    <p><span>JOJO带你游世界 发表于 2017-03-13</span></p>
-                    <p><span>￥3000 -- ￥4000</span> <span>10/3 -- 10/6</span></p>
-                    <p><span>A-B-C-D</span></p>
-                </div>
-            </figcaption>
-            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
-        </figure>
-
-        <figure >
-            <img src="img/41.jpg" alt="img21"/>
-            <figcaption>
-                <h2>用十四天，写就一部《十城记》--JOJO出品</h2>
-                <div>
-                    <p><span>JOJO带你游世界 发表于 2017-03-13</span></p>
-                    <p><span>￥3000 -- ￥4000</span> <span>10/3 -- 10/6</span></p>
-                    <p><span>A-B-C-D</span></p>
-                </div>
-            </figcaption>
-            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
-        </figure>
-
-        <figure >
-            <img src="img/41.jpg" alt="img21"/>
-            <figcaption>
-                <h2>用十四天，写就一部《十城记》--JOJO出品</h2>
-                <div>
-                    <p><span>JOJO带你游世界 发表于 2017-03-13</span></p>
-                    <p><span>￥3000 -- ￥4000</span> <span>10/3 -- 10/6</span></p>
-                    <p><span>A-B-C-D</span></p>
-                </div>
-            </figcaption>
-            <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>1234</div>
-        </figure>
-
     </div>
+    <div id="footer-container" th:insert="~{footer::footer}"></div>
 </div>
+</body>

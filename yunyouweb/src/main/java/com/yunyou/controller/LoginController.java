@@ -15,8 +15,8 @@ public class LoginController {
     @RequestMapping("/login")
     @ResponseBody
     public AppResult login(String username, String password, HttpSession session){
-       session.setAttribute("user",new User(username,password));
-        System.out.println(((User)session.getAttribute("user")).getUsername());
+//       session.setAttribute("user",new User(username,password));
+//        System.out.println(((User)session.getAttribute("user")).getUsername());
         return new AppResult();
     }
 }

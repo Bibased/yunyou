@@ -13,16 +13,17 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
  */
 @Configuration
 public class WebConfig {
-    @Bean
-    public ViewResolver viewResolver(){
-        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setPrefix("/WEB-INF/templates/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
-        TemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine);
-        return viewResolver;
-    }
+//    @Bean
+//    public ViewResolver viewResolver(){
+//        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+//        templateResolver.setPrefix("/WEB-INF/templates/");
+//        templateResolver.setCacheable(false);
+//        templateResolver.setSuffix(".html");
+//        templateResolver.setTemplateMode("HTML5");
+//        TemplateEngine templateEngine = new SpringTemplateEngine();
+//        templateEngine.setTemplateResolver(templateResolver);
+//        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+//        viewResolver.setTemplateEngine(templateEngine);
+//        return viewResolver;
+//   }
 }

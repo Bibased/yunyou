@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<body>
+        <div id="header" th:fragment="header">
+            <div class="col3" id="site-logo">
+                <a >WANDER</a>
+            </div>
+            <div class="col6">
+                <ul id="nav" >
+                    <li class="tab" id="dynamic">动态</li>
+                    <li class="tab" id="advice">攻略</li>
+                    <li class="tab" id="activity">活动</li>
+                </ul>
+            </div>
+
+            <div class="col3" >
+               <div id="header-right">
+                   
+
+                   <div id="user-group">
+                       <img id="user-pic" src="static/img/user.jpg">
+                       <span class="badge">12</span>
+                   </div>
+                   <div id="search-box" class="ib">
+                       <input name="keyword" type="text" width="30px">
+                   </div>
+
+               </div>
+            </div>
+        </div>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+.ib{
+  display:inline-block;
+}
+ul li{
+  list-style: none;
+}
+a{
+  color:#000000;
+}
+.grey{
+  color: #666666;
+}
+.blue-font{
+  color:#337ab7;
+}
+a,a:hover{
+  text-decoration:none !important;
+  cursor: pointer;
+}
+* {
+
+  font-family:'Ubuntu', "宋体",sans-serif;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+}
+ul, menu, dir {
+
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0;
+}
+img,video{
+  width:100%;
+  height: auto;
+}
+@media only screen and (max-width: 768px){
+  *{
+    font-size:10px;
+  }
+}
+h1,h2,h3,h4,h5,h6{
+  padding-top: 0;
+  margin-top: 0;
+}
+.generate-columns(12);
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .col@{i} {
+    width: (@i * 100% / @n);
+    display: block;
+    float: left;
+    height: 100%;
+  }
+  .generate-columns(@n, (@i + 1));
+}
