@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wander.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/reset.css" rel="stylesheet">
+    <link href="static/css/common.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="static/js/jquery-2.0.0.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/distpicker.data.js"></script>
+    <script src="static/js/distpicker.js"></script>
+    <style>
+        #dist-form{
+            margin-bottom: 20px;
+        }
+        #dist-form *{
+            font-size: 15px;
+        }
+        #dist-form select{
+            padding: 3px 0;
+        }
+        .strategy-item{
+            height: 123.6px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            width: calc(100% - 20px);
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .strategy-left{
+            width: 200px;
+            height: 100%;
+            margin-right: 10px;
+        }
+        .strategy-right{
+            position: relative;
+            width:calc(100% - 207px);
+            height: 100%;
+        }
+        .strategy-title{
+            white-space: nowrap;
+            text-overflow:ellipsis;
+        }
+        .strategy-footer{
+            position: absolute;
+            bottom:0;
+        }
+        .strategy-brief{
+            text-overflow: ellipsis;
+            display:-webkit-box;
+            -webkit-line-clamp:3;
+            -webkit-box-orient:vertical;
+            overflow:hidden;
+            font-size: 1.2em;
+        }
+        .strategy-footer{
+            width: 100%;
+        }
+        .strategy-footer li:not(.time){
+            margin-right: 20px;
+            display: inline-block;
+            float: left;
+        }
+        li.time{
+            float: right;
+            display: inline-block;
+        }
+        .strategy-footer *:not(.time){
+            font-size:1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="web-container">
+        <div  id="header-container" th:replace="~{header::header}"></div>
+        <script>$("#header-container").load("header.html");</script>
+        <div id="dynamic-container" class="flex-container">
+            <div id="dynamic-left" class="left-container">
+                <form class="form-inline" id="dist-form">
+                    <div id="distpicker" data-toggle="distpicker">
+                        <span style="margin-right: 5px;">目的地</span>
+                        <div class="form-group">
+                            <label class="sr-only" for="province1">国家</label>
+                            <select  id="province1"><option value="" data-code="">—— 省 ——</option><option value="北京市" data-code="110000" selected="">北京市</option><option value="天津市" data-code="120000">天津市</option><option value="河北省" data-code="130000">河北省</option><option value="山西省" data-code="140000">山西省</option><option value="内蒙古自治区" data-code="150000">内蒙古自治区</option><option value="辽宁省" data-code="210000">辽宁省</option><option value="吉林省" data-code="220000">吉林省</option><option value="黑龙江省" data-code="230000">黑龙江省</option><option value="上海市" data-code="310000">上海市</option><option value="江苏省" data-code="320000">江苏省</option><option value="浙江省" data-code="330000">浙江省</option><option value="安徽省" data-code="340000">安徽省</option><option value="福建省" data-code="350000">福建省</option><option value="江西省" data-code="360000">江西省</option><option value="山东省" data-code="370000">山东省</option><option value="河南省" data-code="410000">河南省</option><option value="湖北省" data-code="420000">湖北省</option><option value="湖南省" data-code="430000">湖南省</option><option value="广东省" data-code="440000">广东省</option><option value="广西壮族自治区" data-code="450000">广西壮族自治区</option><option value="海南省" data-code="460000">海南省</option><option value="重庆市" data-code="500000">重庆市</option><option value="四川省" data-code="510000">四川省</option><option value="贵州省" data-code="520000">贵州省</option><option value="云南省" data-code="530000">云南省</option><option value="西藏自治区" data-code="540000">西藏自治区</option><option value="陕西省" data-code="610000">陕西省</option><option value="甘肃省" data-code="620000">甘肃省</option><option value="青海省" data-code="630000">青海省</option><option value="宁夏回族自治区" data-code="640000">宁夏回族自治区</option><option value="新疆维吾尔自治区" data-code="650000">新疆维吾尔自治区</option><option value="台湾省" data-code="710000">台湾省</option><option value="香港特别行政区" data-code="810000">香港特别行政区</option><option value="澳门特别行政区" data-code="820000">澳门特别行政区</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="city1">城市</label>
+                            <select     id="city1"><option value="" data-code="">—— 市 ——</option><option value="北京市市辖区" data-code="110100" selected="">北京市市辖区</option></select>
+                        </div>
+                    </div>
+                </form>
+                <script>$("#distpicker").distpicker();</script>
+                <div class="strategy-list">
+                    <div class="strategy-item">
+                        <figure class="strategy-left">
+                            <img src="static/img/strategy.JPG">
+                        </figure>
+                        <div class="strategy-right">
+                           <div class="strategy-content">
+                               <h4 class="strategy-title">巴塞罗那，吃喝玩乐全纪录！</h4>
+                               <p class="strategy-brief">
+                                   Duis sollicitudin hendrerit magna eu dictum. In at sapien vel nunc maximus dictum. Pellentesque orci quam, volutpat vitae placerat vel, bibendum non tellus. Donec turpis ipsum, porta in nulla ac, scelerisque pretium nulla. Nunc in arcu a lectus tincidunt fringilla vel malesuada felis. Nulla pellentesque vestibulum lorem, ut pretium tortor. Curabitur dictum dolor ut ex ullamcorper, nec luctus dui tristique. Pellentesque congue nibh sed diam tincidunt feugiat at id nunc. Etiam vitae lorem aliquet, mollis ante eu, eleifend risus. Pellentesque vel consectetur magna. Integer vitae quam auctor, blandit ligula eu, auctor ligula. Proin quis libero at nibh fringilla euismod. Phasellus ut suscipit libero. Maecenas congue, tellus quis dictum blandit, magna turpis ullamcorper sem, a accumsan mi massa vel arcu.
+                               </p>
+                           </div>
+                            <ul class="strategy-footer">
+                                <li><span class="glyphicon glyphicon-map-marker"></span>Barcelona</li>
+                                <li><span class="glyphicon glyphicon-user"></span> Daley</li>
+                                <li><span class="glyphicon glyphicon-heart-empty"></span> 666</li>
+                                <li class="grey time">发表于 16-11-10</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="strategy-item">
+                        <figure class="strategy-left">
+                            <img src="static/img/strategy.JPG">
+                        </figure>
+                        <div class="strategy-right">
+                           <div class="strategy-content">
+                               <h4 class="strategy-title">巴塞罗那，吃喝玩乐全纪录！</h4>
+                               <p class="strategy-brief">
+                                   Duis sollicitudin hendrerit magna eu dictum. In at sapien vel nunc maximus dictum. Pellentesque orci quam, volutpat vitae placerat vel, bibendum non tellus. Donec turpis ipsum, porta in nulla ac, scelerisque pretium nulla. Nunc in arcu a lectus tincidunt fringilla vel malesuada felis. Nulla pellentesque vestibulum lorem, ut pretium tortor. Curabitur dictum dolor ut ex ullamcorper, nec luctus dui tristique. Pellentesque congue nibh sed diam tincidunt feugiat at id nunc. Etiam vitae lorem aliquet, mollis ante eu, eleifend risus. Pellentesque vel consectetur magna. Integer vitae quam auctor, blandit ligula eu, auctor ligula. Proin quis libero at nibh fringilla euismod. Phasellus ut suscipit libero. Maecenas congue, tellus quis dictum blandit, magna turpis ullamcorper sem, a accumsan mi massa vel arcu.
+                               </p>
+                           </div>
+                            <ul class="strategy-footer">
+                                <li><span class="glyphicon glyphicon-map-marker"></span>Barcelona</li>
+                                <li><span class="glyphicon glyphicon-user"></span> Daley</li>
+                                <li><span class="glyphicon glyphicon-heart-empty"></span> 666</li>
+                                <li class="grey time">发表于 16-11-10</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="dynamic-right" class="right-container">
+                <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
+                <p class="followings"> 关注的人</p>
+                <ul class="user-list">
+                    <li class="user-item"><a ><span class="glyphicon glyphicon-align-justify"></span> 全部</a></li>
+                    <li class="user-item">
+                        <a ><span class="glyphicon glyphicon-user"></span>Daley</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</body>
