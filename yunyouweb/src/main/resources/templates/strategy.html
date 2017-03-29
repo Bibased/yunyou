@@ -29,7 +29,7 @@
             height: 123.6px;
             overflow: hidden;
             margin-bottom: 30px;
-            width: calc(100% - 20px);
+            width: 100%;
             display: flex;
             flex-wrap: nowrap;
         }
@@ -42,10 +42,6 @@
             position: relative;
             width:calc(100% - 207px);
             height: 100%;
-        }
-        .strategy-title{
-            white-space: nowrap;
-            text-overflow:ellipsis;
         }
         .strategy-footer{
             position: absolute;
@@ -74,14 +70,23 @@
         .strategy-footer *:not(.time){
             font-size:1.2em;
         }
+        .collect-title{
+            font-size:15px;
+        }
+        .collect-list{
+            width: 100%;
+        }
+        .collect-item{
+            margin-bottom: 6px;
+        }
     </style>
 </head>
 <body>
     <div class="web-container">
         <div  id="header-container" th:replace="~{header::header}"></div>
         <script>$("#header-container").load("header.html");</script>
-        <div id="dynamic-container" class="flex-container">
-            <div id="dynamic-left" class="left-container">
+        <div  class="flex-container">
+            <div  class="left-container">
                 <form class="form-inline" id="dist-form">
                     <div id="distpicker" data-toggle="distpicker">
                         <span style="margin-right: 5px;">目的地</span>
@@ -103,7 +108,7 @@
                         </figure>
                         <div class="strategy-right">
                            <div class="strategy-content">
-                               <h4 class="strategy-title">巴塞罗那，吃喝玩乐全纪录！</h4>
+                               <h4 class="strategy-title one-line">巴塞罗那，吃喝玩乐全纪录</h4>
                                <p class="strategy-brief">
                                    Duis sollicitudin hendrerit magna eu dictum. In at sapien vel nunc maximus dictum. Pellentesque orci quam, volutpat vitae placerat vel, bibendum non tellus. Donec turpis ipsum, porta in nulla ac, scelerisque pretium nulla. Nunc in arcu a lectus tincidunt fringilla vel malesuada felis. Nulla pellentesque vestibulum lorem, ut pretium tortor. Curabitur dictum dolor ut ex ullamcorper, nec luctus dui tristique. Pellentesque congue nibh sed diam tincidunt feugiat at id nunc. Etiam vitae lorem aliquet, mollis ante eu, eleifend risus. Pellentesque vel consectetur magna. Integer vitae quam auctor, blandit ligula eu, auctor ligula. Proin quis libero at nibh fringilla euismod. Phasellus ut suscipit libero. Maecenas congue, tellus quis dictum blandit, magna turpis ullamcorper sem, a accumsan mi massa vel arcu.
                                </p>
@@ -122,7 +127,7 @@
                         </figure>
                         <div class="strategy-right">
                            <div class="strategy-content">
-                               <h4 class="strategy-title">巴塞罗那，吃喝玩乐全纪录！</h4>
+                               <h4 class="strategy-title one-line">巴塞罗那，吃喝玩乐全纪录！</h4>
                                <p class="strategy-brief">
                                    Duis sollicitudin hendrerit magna eu dictum. In at sapien vel nunc maximus dictum. Pellentesque orci quam, volutpat vitae placerat vel, bibendum non tellus. Donec turpis ipsum, porta in nulla ac, scelerisque pretium nulla. Nunc in arcu a lectus tincidunt fringilla vel malesuada felis. Nulla pellentesque vestibulum lorem, ut pretium tortor. Curabitur dictum dolor ut ex ullamcorper, nec luctus dui tristique. Pellentesque congue nibh sed diam tincidunt feugiat at id nunc. Etiam vitae lorem aliquet, mollis ante eu, eleifend risus. Pellentesque vel consectetur magna. Integer vitae quam auctor, blandit ligula eu, auctor ligula. Proin quis libero at nibh fringilla euismod. Phasellus ut suscipit libero. Maecenas congue, tellus quis dictum blandit, magna turpis ullamcorper sem, a accumsan mi massa vel arcu.
                                </p>
@@ -139,17 +144,21 @@
 
             </div>
 
-            <div id="dynamic-right" class="right-container">
+            <div  class="right-container">
                 <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
-                <p class="followings"> 关注的人</p>
+                <hr/>
+                <p class="followings"><span class="glyphicon glyphicon-user"></span> 关注的人</p>
                 <ul class="user-list">
-                    <li class="user-item"><a ><span class="glyphicon glyphicon-align-justify"></span> 全部</a></li>
-                    <li class="user-item">
-                        <a ><span class="glyphicon glyphicon-user"></span>Daley</a>
-                    </li>
+                    <li class="user-item"><a >Daley</a></li>
+                    <li class="user-item"><a >全部</a></li>
                 </ul>
-
+                <hr/>
+                <p class="collect-title"><span class="glyphicon glyphicon-bookmark"></span> 我的收藏</p>
+                <ul class="collect-list">
+                    <li class="collect-item one-line"><a>巴塞罗那，吃喝玩乐全纪录啦啦啦！</a></li>
+                </ul>
             </div>
         </div>
+        <div id="footer-container" th:insert="~{footer::footer}"></div>
     </div>
 </body>

@@ -39,15 +39,15 @@
                         <div class="modal-body">
                             <form class="form-horizontal" method="POST" id="signinForm">
                                 <div class="form-group">
-                                    <label  >用户名</label>
-                                    <input class="form-control input-lg" type="text" name="username"  required>
+                                    <label >用户名</label>
+                                    <input class="form-control"  type="text" name="username"  maxlength="16" required>
                                 </div>
                                 <div class="form-group">
                                     <label  >密码</label>
-                                    <input class="form-control input-lg" type="password" name="password"  required>
+                                    <input class="form-control" type="password" name="password"  required>
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-lg" id="signinBtn" type="button" >登录</button>
+                                    <button class="btn btn-primary" id="signinBtn" >登录</button>
                                 </div>
                             </form>
                         </div>
@@ -62,26 +62,26 @@
 
                                 <div class="form-group">
                                     <label  >邮箱</label>
-                                    <input class="form-control" name="email" required>
+                                    <input class="form-control" name="email" type="email" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label  >昵称</label>
-                                    <input class="form-control" type="text" name="username" required>
+                                    <input class="form-control" type="text" name="username"  required>
                                 </div>
                                 <div class="form-group">
                                     <label  >密码</label>
-                                    <input class="form-control" type="password" name="password" required>
+                                    <input class="form-control" type="password" name="password"  id="password" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label  >确认密码</label>
-                                    <input class="form-control" type="password" name="password2" required>
+                                    <input class="form-control" type="password" name="confirmPsw" id="confirmPsw" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label  >漫步宣言</label>
-                                    <input class="form-control" name="motto" required>
+                                    <input class="form-control" name="motto" maxlength="60" required>
                                 </div>
 
                                 <div class="form-group">
@@ -93,7 +93,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary btn-lg" id="signupBtn" type="button">注册</button>
+                                    <button class="btn btn-primary" id="signupBtn" >注册</button>
                                 </div>
 
 
@@ -102,7 +102,38 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div>
-
+            <script src="static/js/jqueryvalidate/jquery.validate.js"></script>
+            <script src="static/js/jqueryvalidate/messages_zh.js"></script>
+            <script>
+                $.validator.setDefaults({
+                    submitHandler: function() {
+                        alert("提交事件!");
+                    }
+                });
+                $().ready(function() {
+                    $("#signinForm").validate({
+                        rules:{
+                            password:{
+                                rangelength: [6, 16]
+                            }
+                        }
+                    });
+                    $("#signupForm").validate({
+                        rules:{
+                            username:{
+                                rangelength: [6, 16]
+                            },
+                            password:{
+                                rangelength: [6, 16]
+                            },
+                            confirmPsw:{
+                                equalTo:"#password",
+                                rangelength: [6, 16]
+                            }
+                        }
+                    });
+                });
+            </script>
         </div>
 
 

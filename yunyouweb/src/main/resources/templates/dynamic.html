@@ -19,9 +19,6 @@
             flex-wrap: nowrap;
             margin-bottom: 35px;
         }
-        .dynamic-content{
-            width: 90%;
-        }
         .pic-list{
             display: flex;
             flex-wrap: wrap;
@@ -62,7 +59,7 @@
 <body>
     <div class="web-container">
         <div  id="header-container" th:replace="~{header::header}"></div>
-        <!--<script>$("#header-container").load("header.html");</script>-->
+        <script>$("#header-container").load("header.html");</script>
         <div id="dynamic-container" class="flex-container">
             <div id="dynamic-left" class="left-container">
                 <div class="dynamic-item">
@@ -137,19 +134,15 @@
             </div><!--dynamic-left end-->
             <div id="dynamic-right" class="right-container">
                 <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
-                <p class="followings"> 关注的人</p>
+                <hr/>
+                <p class="followings"><span class="glyphicon glyphicon-user"></span> 关注的人</p>
                 <ul class="user-list">
-                    <li class="user-item"><a ><span class="glyphicon glyphicon-align-justify"></span> 全部</a></li>
-                    <li class="user-item">
-                        <a >
-                            <span class="glyphicon glyphicon-user"></span>
-                            Daley
-                        </a>
-                    </li>
-
-
+                    <li class="user-item"><a >Daley</a></li>
+                    <li class="user-item"><a >全部</a></li>
                 </ul>
             </div>
+
         </div>
+        <div id="footer-container" th:insert="~{footer::footer}"></div>
     </div>
 </body>
