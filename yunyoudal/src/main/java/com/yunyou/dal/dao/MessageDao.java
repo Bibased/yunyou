@@ -1,12 +1,15 @@
 package com.yunyou.dal.dao;
 
 import com.yunyou.dal.entity.Message;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +24,6 @@ import java.util.List;
  * findBy为前缀的方法spring会按字段名字解析，比如findByUserId根据userId查找，findByContent根据content字段查找，
  * 还可以加上And,Or,In,Not,NotIn,OrderBy,Like等。findByUserIdIn根据userId在集合里查找，详情参考http://docs.spring.io/spring-data/jpa/docs/2.0.0.M1/reference/html/#jpa.query-methods.query-creation
  */
-@Component
 public interface MessageDao extends JpaRepository<Message,Long> {
     Message findByUserId(Long userId);
     List<Message> findByUserIdIn(Collection<Long> userId);

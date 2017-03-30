@@ -20,7 +20,7 @@
             margin-bottom: 35px;
         }
         .dynamic-content{
-            width: 90%;
+            width: calc(100% - 115px);
         }
         .pic-list{
             display: flex;
@@ -30,7 +30,7 @@
         .pic-box{
             width:200px;
             height: 200px;
-            margin-right:3px;
+            margin-right:10px;
             margin-bottom: 3px;
             box-sizing: border-box;
             border:1px solid #e3e3e3;
@@ -57,12 +57,45 @@
         .dynamic-footer li .glyphicon{
             font-size: 1.3em;
         }
+        #dynamicForm{
+            width: 96%;
+            margin: 0 auto;
+        }
+        textarea[name=content]{
+            height: auto;
+            width: 100%;
+            min-height: 150px;
+            margin-bottom: 10px;
+            border: 1px solid #e3e3e3;
+
+        }
+        .img-container{
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .img-box{
+            width: 100px;
+            height: 100px;
+            margin:0 6px 6px 0;
+            border: 1px solid #e3e3e3;
+        }
+        .glyphicon-plus{
+            font-size: 50px;
+            font-weight: 100;
+            line-height: 100px;
+            color: #e3e3e3;
+            text-align: center;
+        }
+        .pb-location,.pb-location *{
+            font-size: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="web-container">
         <div  id="header-container" th:replace="~{header::header}"></div>
-        <!--<script>$("#header-container").load("header.html");</script>-->
+        <script>$("#header-container").load("header.html");</script>
         <div id="dynamic-container" class="flex-container">
             <div id="dynamic-left" class="left-container">
                 <div class="dynamic-item">
@@ -76,18 +109,11 @@
                     <div class="dynamic-content">
                         <h5>刚刚结束非洲之旅，土著人民好热情，差点就要把我烤来吃掉啦，好吓人~</h5>
                         <div class="pic-list" >
-                            <figure class="pic-box">
-                                <img class="dynamic-picture" src="static/img/spot0.jpeg">
-                            </figure>
-                            <figure class="pic-box">
-                                <img class="dynamic-picture" src="static/img/spot1.jpeg">
-                            </figure>
-                            <figure class="pic-box">
-                                <img class="dynamic-picture" src="static/img/spot1.jpeg">
-                            </figure>
-                            <figure class="pic-box">
-                                <img class="dynamic-picture" src="static/img/spot1.jpeg">
-                            </figure>
+                            <figure class="pic-box bg-cover" style="background-image: url('static/img/spot1.jpeg');"></figure>
+                            <figure class="pic-box bg-cover" style="background-image: url('static/img/spot1.jpeg');"></figure>
+                            <figure class="pic-box bg-cover" style="background-image: url('static/img/spot1.jpeg');"></figure>
+                            <figure class="pic-box bg-cover" style="background-image: url('static/img/spot1.jpeg');"></figure>
+
                         </div>
                         <div class="dynamic-footer">
                             <ul >
@@ -112,15 +138,9 @@
                     <div class="dynamic-content">
                         <h5>刚刚结束非洲之旅，土著人民好热情，差点就要把我烤来吃掉啦，好吓人~</h5>
                         <div class="pic-list" >
-                            <figure class="pic-box">
-                                <img class="dynamic-picture" src="static/img/spot0.jpeg">
-                            </figure>
-                            <figure class="pic-box">
-                                <img class="dynamic-picture" src="static/img/spot1.jpeg">
-                            </figure>
-                            <figure class="pic-box">
-                                <img class="dynamic-picture" src="static/img/spot1.jpeg">
-                            </figure>
+                            <figure class="pic-box bg-cover" style="background-image: url('static/img/spot1.jpeg');"></figure>
+                            <figure class="pic-box bg-cover" style="background-image: url('static/img/spot1.jpeg');"></figure>
+
                         </div>
                         <div class="dynamic-footer">
                             <ul >
@@ -136,20 +156,38 @@
 
             </div><!--dynamic-left end-->
             <div id="dynamic-right" class="right-container">
-                <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
-                <p class="followings"> 关注的人</p>
+                <p class="publish-trigger"><a data-toggle="modal" data-target="#dynamicModal"> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
+                <hr/>
+                <p class="followings"><span class="glyphicon glyphicon-user"></span> 关注的人</p>
                 <ul class="user-list">
-                    <li class="user-item"><a ><span class="glyphicon glyphicon-align-justify"></span> 全部</a></li>
-                    <li class="user-item">
-                        <a >
-                            <span class="glyphicon glyphicon-user"></span>
-                            Daley
-                        </a>
-                    </li>
-
-
+                    <li class="user-item"><a >Daley</a></li>
+                    <li class="user-item"><a >全部</a></li>
                 </ul>
             </div>
+
         </div>
+        <div id="footer-container" th:insert="~{footer::footer}"></div>
+
+        <div id="dynamicModal" class="modal fade" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form class="form-horizontal" method="POST" id="dynamicForm">
+                            <textarea name="content" placeholder="说点什么吧...."></textarea>
+                            <div class="img-container">
+                                <div class="img-box bg-cover" style="background-image: url('static/img/40.jpg');"></div>
+                                <div class="img-box glyphicon glyphicon-plus"></div>
+                            </div>
+                            <div >
+                                <div class="pb-location ib"><span class="glyphicon glyphicon-map-marker"></span>大连市开发区 </div>
+                                <button class="btn btn-default pull-right">发布</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+
+        </div>
+
     </div>
 </body>

@@ -23,6 +23,17 @@ a:hover {
   font-size: 13px;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  overflow-y: scroll;
+}
+.bg-cover {
+  background-size: cover;
 }
 ul,
 menu,
@@ -37,6 +48,10 @@ img,
 video {
   width: 100%;
   height: auto;
+}
+.one-line {
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 @media only screen and (max-width: 768px) {
   * {
