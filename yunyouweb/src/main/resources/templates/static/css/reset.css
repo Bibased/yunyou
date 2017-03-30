@@ -32,6 +32,9 @@ body {
 body {
   overflow-y: scroll;
 }
+.bg-cover {
+  background-size: cover;
+}
 ul,
 menu,
 dir {
