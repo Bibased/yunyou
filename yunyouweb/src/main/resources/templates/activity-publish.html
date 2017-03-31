@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wander.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/wangeditor/css/wangEditor.min.css" rel="stylesheet">
+    <link href="static/css/reset.css" rel="stylesheet">
+    <link href="static/css/common.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/common.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/distpicker.data.js"></script>
+    <script src="static/js/distpicker.js"></script>
+    <script src="static/js/jqueryvalidate/jquery.validate.js"></script>
+    <script src="static/js/jqueryvalidate/messages_zh.js"></script>
+    <script src="static/js/wangeditor/wangEditor.min.js"></script>
+
+    <style>
+        .form-group{
+           margin-right: 0 !important;
+           margin-left: 0 !important;
+        }
+        .form-group label{
+            width: 8em;
+            float: left;
+            line-height: 34px;
+            height: 34px;
+            display: block;
+        }
+        input[name=title]{
+            width: 80%;
+        }
+        input[name=headCount]{
+            width: 10em;
+        }
+        input[name=cost]{
+            width: 10em;
+        }
+        input[type=date]{
+            width: 10em;
+            display: inline-block;
+        }
+        .active-summary li{
+            margin-right: 30px;
+        }
+        .active-summary li,.active-summary li span{
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="web-container">
+        <div  id="header-container" th:replace="~{header::header}"></div>
+        <div  class="flex-container">
+            <div  class="left-container">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <input class="form-control" name="title" placeholder="请输入不超过40字的标题" maxlength="40" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" name="startTime" >
+                        <span style="margin-right: 3px;">--</span>
+                        <input type="date" class="form-control" name="endTime" >
+                    </div>
+                    <div class="form-group">
+                        <label>人数上限(人)：</label>
+                        <input name="headCount" class="form-control"  maxlength="6" required>
+                    </div>
+                    <div class="form-group">
+                        <label>花费(元/人)：</label>
+                        <input name="cost" class="form-control"  maxlength="6" required>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="editor"  required></textarea>
+                    </div>
+
+                </form>
+            </div>
+
+            <div  class="right-container">
+                <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发起活动</a></p>
+                <hr/>
+                <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
+                <ul class="user-list">
+                    <li class="user-item"><a >Daley</a></li>
+                    <li class="user-item"><a >全部</a></li>
+                </ul>
+                <hr/>
+                <p class="collect-title"><span class="glyphicon glyphicon-record"></span> 我的圈子</p>
+                <ul class="collect-list">
+                    <li class="collect-item one-line"><a>迪拜土豪</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer-container" th:insert="~{footer::footer}"></div>
+    </div>
+    <script type="text/javascript">
+        createEditor();
+    </script>
+</body>

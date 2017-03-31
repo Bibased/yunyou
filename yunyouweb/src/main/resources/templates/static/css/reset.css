@@ -1,6 +1,12 @@
 .ib {
   display: inline-block;
 }
+.il {
+  display: inline;
+}
+.ul-inline li {
+  display: inline;
+}
 ul li {
   list-style: none;
 }

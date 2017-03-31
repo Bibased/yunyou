@@ -10,7 +10,7 @@
     <link href="static/css/common.css" rel="stylesheet">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="static/js/jquery-2.0.0.js"></script>
-
+    <script src="static/js/common.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="static/js/bootstrap.min.js"></script>
     <style>
@@ -95,7 +95,6 @@
 <body>
     <div class="web-container">
         <div  id="header-container" th:replace="~{header::header}"></div>
-        <script>$("#header-container").load("header.html");</script>
         <div id="dynamic-container" class="flex-container">
             <div id="dynamic-left" class="left-container">
                 <div class="dynamic-item">
@@ -158,7 +157,7 @@
             <div id="dynamic-right" class="right-container">
                 <p class="publish-trigger"><a data-toggle="modal" data-target="#dynamicModal"> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
                 <hr/>
-                <p class="followings"><span class="glyphicon glyphicon-user"></span> 关注的人</p>
+                <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
                 <ul class="user-list">
                     <li class="user-item"><a >Daley</a></li>
                     <li class="user-item"><a >全部</a></li>

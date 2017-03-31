@@ -70,9 +70,6 @@
         .strategy-footer *:not(.time){
             font-size:1.2em;
         }
-        .collect-title{
-            font-size:15px;
-        }
         .collect-list{
             width: 100%;
         }
@@ -84,28 +81,31 @@
 <body>
     <div class="web-container">
         <div  id="header-container" th:replace="~{header::header}"></div>
-        <script>$("#header-container").load("header.html");</script>
         <div  class="flex-container">
             <div  class="left-container">
                 <form class="form-inline" id="dist-form">
                     <div id="distpicker" data-toggle="distpicker">
-                        <span style="margin-right: 5px;">目的地</span>
                         <div class="form-group">
+                            <span style="margin-right: 5px;">目的地</span>
                             <label class="sr-only" for="province1">国家</label>
-                            <select  id="province1"><option value="" data-code="">—— 省 ——</option><option value="北京市" data-code="110000" selected="">北京市</option><option value="天津市" data-code="120000">天津市</option><option value="河北省" data-code="130000">河北省</option><option value="山西省" data-code="140000">山西省</option><option value="内蒙古自治区" data-code="150000">内蒙古自治区</option><option value="辽宁省" data-code="210000">辽宁省</option><option value="吉林省" data-code="220000">吉林省</option><option value="黑龙江省" data-code="230000">黑龙江省</option><option value="上海市" data-code="310000">上海市</option><option value="江苏省" data-code="320000">江苏省</option><option value="浙江省" data-code="330000">浙江省</option><option value="安徽省" data-code="340000">安徽省</option><option value="福建省" data-code="350000">福建省</option><option value="江西省" data-code="360000">江西省</option><option value="山东省" data-code="370000">山东省</option><option value="河南省" data-code="410000">河南省</option><option value="湖北省" data-code="420000">湖北省</option><option value="湖南省" data-code="430000">湖南省</option><option value="广东省" data-code="440000">广东省</option><option value="广西壮族自治区" data-code="450000">广西壮族自治区</option><option value="海南省" data-code="460000">海南省</option><option value="重庆市" data-code="500000">重庆市</option><option value="四川省" data-code="510000">四川省</option><option value="贵州省" data-code="520000">贵州省</option><option value="云南省" data-code="530000">云南省</option><option value="西藏自治区" data-code="540000">西藏自治区</option><option value="陕西省" data-code="610000">陕西省</option><option value="甘肃省" data-code="620000">甘肃省</option><option value="青海省" data-code="630000">青海省</option><option value="宁夏回族自治区" data-code="640000">宁夏回族自治区</option><option value="新疆维吾尔自治区" data-code="650000">新疆维吾尔自治区</option><option value="台湾省" data-code="710000">台湾省</option><option value="香港特别行政区" data-code="810000">香港特别行政区</option><option value="澳门特别行政区" data-code="820000">澳门特别行政区</option></select>
+                            <select  id="province1"></select>
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="city1">城市</label>
-                            <select     id="city1"><option value="" data-code="">—— 市 ——</option><option value="北京市市辖区" data-code="110100" selected="">北京市市辖区</option></select>
+                            <select     id="city1"></select>
                         </div>
                     </div>
                 </form>
-                <script>$("#distpicker").distpicker();</script>
+                <script>
+                    $("#distpicker").distpicker({
+                    province: '所有',
+                    city: '所有',
+                    district: ''
+                });
+                </script>
                 <div class="strategy-list">
                     <div class="strategy-item">
-                        <figure class="strategy-left">
-                            <img src="static/img/strategy.JPG">
-                        </figure>
+                        <figure class="strategy-left bg-cover" style="background-image: url('static/img/strategy.JPG');"></figure>
                         <div class="strategy-right">
                            <div class="strategy-content">
                                <h4 class="strategy-title one-line">巴塞罗那，吃喝玩乐全纪录</h4>
@@ -122,9 +122,7 @@
                         </div>
                     </div>
                     <div class="strategy-item">
-                        <figure class="strategy-left">
-                            <img src="static/img/strategy.JPG">
-                        </figure>
+                        <figure class="strategy-left bg-cover" style="background-image: url('static/img/strategy.JPG');"></figure>
                         <div class="strategy-right">
                            <div class="strategy-content">
                                <h4 class="strategy-title one-line">巴塞罗那，吃喝玩乐全纪录！</h4>
@@ -147,7 +145,7 @@
             <div  class="right-container">
                 <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
                 <hr/>
-                <p class="followings"><span class="glyphicon glyphicon-user"></span> 关注的人</p>
+                <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
                 <ul class="user-list">
                     <li class="user-item"><a >Daley</a></li>
                     <li class="user-item"><a >全部</a></li>

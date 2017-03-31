@@ -10,6 +10,7 @@
     <link href="static/css/common.css" rel="stylesheet">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/common.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="static/js/bootstrap.min.js"></script>
@@ -31,10 +32,6 @@
 </head>
 <body>
 <div class="web-container">
-    <script>
-        $("#header-container").load("header.html");
-        $("#footer-container").load("footer.html");
-    </script>
     <div  id="header-container" th:insert="~{header::header}"></div>
 
     <div class="main-content">

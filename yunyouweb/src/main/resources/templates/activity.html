@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wander.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/reset.css" rel="stylesheet">
+    <link href="static/css/common.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/common.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/distpicker.data.js"></script>
+    <script src="static/js/distpicker.js"></script>
+    <style>
+        #pickForm{
+            margin-bottom: 20px;
+        }
+        #pickForm *{
+            font-size: 15px;
+        }
+        #distpicker,#pickForm .form-group{
+            float: left;
+        }
+        .form-group{
+            margin-right: 20px;
+        }
+        #pickForm select{
+            padding: 3px 0;
+        }
+        #pickForm input[type=text]{
+            width: 3em;
+        }
+        #pickForm input[type=date]{
+            width: 10em;
+        }
+        .strategy-item{
+            height: 123.6px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            width: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .strategy-left{
+            width: 200px;
+            height: 100%;
+            margin-right: 10px;
+        }
+        .strategy-right{
+            position: relative;
+            width:calc(100% - 207px);
+            height: 100%;
+        }
+        .strategy-footer{
+            position: absolute;
+            bottom:0;
+        }
+        .strategy-brief{
+            text-overflow: ellipsis;
+            display:-webkit-box;
+            -webkit-line-clamp:3;
+            -webkit-box-orient:vertical;
+            overflow:hidden;
+            font-size: 1.2em;
+        }
+        .strategy-footer{
+            width: 100%;
+        }
+        .strategy-footer li:not(.time){
+            margin-right: 20px;
+            display: inline-block;
+            float: left;
+        }
+        li.time{
+            float: right;
+            display: inline-block;
+        }
+        .strategy-footer *:not(.time){
+            font-size:1.2em;
+        }
+        .calendar{
+            height: 30px;
+            margin-bottom: 10px;
+        }
+        .calendar .date{
+            font-size:18px;
+            margin-top: -18px;
+            display: inline-block;
+        }
+        .glyphicon-calendar{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="web-container">
+        <div  id="header-container" th:replace="~{header::header}"></div>
+        <div  class="flex-container">
+            <div  class="left-container">
+                <form class="form-inline" id="pickForm">
+
+                    <div id="distpicker" data-toggle="distpicker">
+                        <div class="form-group">
+                            <span class="mr">目的地</span>
+                            <select  id="province1"></select>
+                            <select     id="city1"></select>
+                        </div>
+                    </div>
+                    <script>
+                        $("#distpicker").distpicker({
+                            province: '所有',
+                            city: '所有',
+                            district: ''
+                        });
+                    </script>
+                    <div class="form-group">
+                        <span class="mr">价格</span>
+                        <select name="price" >
+                            <option value="0">不限</option>
+                            <option value="3000">低于3000</option>
+                            <option value="10000">低于10000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span class="mr">开始日期</span>
+                        <input type="date" name="start-date">
+                    </div>
+                    <div class="form-group">
+                        <span class="mr">天数</span>
+                        <select name="days">
+                            <option value="0">无限制</option>
+                            <option value="10">少于10</option>
+                            <option value="20">少于20</option>
+                            <option value="30">少于30</option>
+                        </select>
+                    </div>
+
+
+
+
+                </form>
+                <script>$("#distpicker").distpicker();</script>
+                <div class="strategy-list">
+                    <div class="active-item">
+                        <div class="calendar"><span class="glyphicon glyphicon-calendar"></span><span class="date"> 2016.11.30-2016.12.02</span> </div>
+                        <div class="strategy-item">
+                        <figure class="strategy-left bg-cover" style="background-image: url('static/img/activity.JPG');">
+                        </figure>
+                        <div class="strategy-right">
+                           <div class="strategy-content">
+                               <h4 class="strategy-title one-line">迪拜 五天四夜土豪之旅</h4>
+                               <p class="strategy-brief">
+                                   In at lorem quam. Curabitur in massa tristique, laoreet quam in, mattis neque. Donec sagittis gravida ipsum sit amet consequat. Vivamus a efficitur sapien. Vestibulum in ultrices lorem. Integer ultricies ipsum et risus efficitur, vitae posuere nibh mollis. Vestibulum cursus elementum augue, a bibendum tellus eleifend a. Praesent viverra tortor sit amet varius ornare. Vivamus maximus neque id enim suscipit vestibulum.
+                               </p>
+                           </div>
+                            <ul class="strategy-footer">
+                                <li><span class="glyphicon glyphicon-map-marker"></span>Barcelona</li>
+                                <li><span class="glyphicon glyphicon-user"></span> Daley</li>
+                                <li><span class="glyphicon icon-group"></span> 7人已报名</li>
+                                <li class="grey time">发起于 16-11-10</li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div  class="right-container">
+                <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发起活动</a></p>
+                <hr/>
+                <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
+                <ul class="user-list">
+                    <li class="user-item"><a >Daley</a></li>
+                    <li class="user-item"><a >全部</a></li>
+                </ul>
+                <hr/>
+                <p class="collect-title"><span class="glyphicon glyphicon-record"></span> 我的圈子</p>
+                <ul class="collect-list">
+                    <li class="collect-item one-line"><a>迪拜土豪</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="footer-container" th:insert="~{footer::footer}"></div>
+    </div>
+</body>
