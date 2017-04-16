@@ -1,9 +1,9 @@
 package com.yunyou.dal.entity;
 
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by Liujinglin on 17/3/19.
@@ -14,7 +14,7 @@ public class City {
     @GeneratedValue
     private Long id;
     private String country;
-    private Strategy city;
+    private String city;
 
     public Long getId() {
         return id;
@@ -32,11 +32,10 @@ public class City {
         this.country = country;
     }
 
-    public Strategy getCity() {
+    public String getCity() {
         return city;
     }
-
-    public void setCity(Strategy city) {
+    public void setCity(String city) {
         this.city = city;
     }
 }

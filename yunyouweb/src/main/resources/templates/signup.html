@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/reset.css" rel="stylesheet">
+    <link href="static/css/user-form.css" rel="stylesheet">
+</head>
+<body>
+
+
+<form class="form-container" method="POST" id="signupForm">
+
+    <div class="form-group">
+        <label  >邮箱</label>
+        <input class="form-control" name="email" type="email" required>
+    </div>
+
+    <div class="form-group">
+        <label  >昵称</label>
+        <input class="form-control" type="text" name="username"  required>
+    </div>
+    <div class="form-group">
+        <label  >密码</label>
+        <input class="form-control" type="password" name="password"  id="password" required>
+    </div>
+
+    <div class="form-group">
+        <label  >确认密码</label>
+        <input class="form-control" type="password" name="confirmPsw" id="confirmPsw" required>
+    </div>
+
+    <div class="form-group">
+        <label  >漫步宣言</label>
+        <input class="form-control" name="motto" maxlength="60" required>
+    </div>
+
+    <div class="form-group">
+        <label  >性别</label>
+        <ul class="gender-group">
+            <li><input type="radio" name="gender" value="1">男</li>
+            <li><input  type="radio" name="gender" value="2">女</li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" id="signupBtn" >注册</button>
+    </div>
+
+
+</form>
+
+
+<script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/jqueryvalidate/jquery.validate.js"></script>
+    <script src="static/js/jqueryvalidate/messages_zh.js"></script>
+    <script>
+        $("#signinForm").submit(function () {
+            var fm = new FormData(document.getElementById("signinForm"));
+            $.ajax({type:"post",url:"/signup.do",data:fm,
+                processData: false,  // 告诉jQuery不要去处理发送的数据
+                contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+                success:function(data,textStatus,jqXHR){
+                    if (data.isSuccess){
+                        alert("注册成功");
+                    }else alert(data.failedMsg);
+                }
+            });
+            return false;
+        });
+        $().ready(function() {
+
+            $("#signupForm").validate({
+                rules:{
+                    username:{
+                        rangelength: [6, 16]
+                    },
+                    password:{
+                        rangelength: [6, 16]
+                    },
+                    confirmPsw:{
+                        equalTo:"#password",
+                        rangelength: [6, 16]
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

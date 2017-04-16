@@ -159,4 +159,47 @@
         </div>
         <div id="footer-container" th:insert="~{footer::footer}"></div>
     </div>
+    <script>
+        var url = "/strategy/query";
+        var userId=null;
+        var app = new Vue({
+            el:"#page-box",
+            data:{
+                items:'',
+                currentPage:1,
+                totalPage:''
+            },
+            methods:{
+                prev: function (){
+                    if(this.currentPage <= 1) return;
+                    this.currentPage --;
+                    getPage(this.currentPage);
+                },
+                next:function() {
+                    if(this.currentPage >= this.totalPage) return;
+                    this.currentPage ++;
+                    getPage(this.currentPage);
+                }
+            }
+        });
+        getPage(1);
+        function getPage(index) {
+            $.ajax({url:url,async:false,data:{pageId:index,userIds:userId,size:1}}).success(function (res,status,jqXHR){
+                console.log(res);
+                app.totalPage  = res.totalPages;
+                app.items = res.content;
+                app.currentPage = index;
+                setInterval(function () {
+                    $(".pic-box").each(function () {
+                        $(this).css({"background-image":"url('"+$(this).attr("background")+"')"});
+                    });
+                },10);
+            });
+        }
+        function getPageByUserId(id) {
+            userId=id;
+            getPage(1);
+        }
+    </script>
 </body>
+</html>

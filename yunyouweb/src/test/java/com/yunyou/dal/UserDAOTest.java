@@ -14,8 +14,8 @@ public class UserDAOTest {
 	UserDAO userDAO;
 	@Test
 	public void testQuery() {
-		System.out.println(userDAO.findNameById(1L));
-		System.out.println(userDAO.findById(1L).getName());
+
+
 	}
 
 }

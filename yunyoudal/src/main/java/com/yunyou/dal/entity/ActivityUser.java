@@ -1,15 +1,29 @@
 package com.yunyou.dal.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by Liujinglin on 17/3/19.
  */
 @Entity
-public class ActivityInterested {
+public class ActivityUser {
+    @Id
+    @GeneratedValue
+    private Long id;
     private Long activityId;
     private Long userId;
-    private Integer attentionIndex;
+    //管理类型：1:感兴趣，2：已加入
+    private Integer type;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getActivityId() {
         return activityId;
@@ -27,11 +41,11 @@ public class ActivityInterested {
         this.userId = userId;
     }
 
-    public Integer getAttentionIndex() {
-        return attentionIndex;
+    public Integer getType() {
+        return type;
     }
 
-    public void setAttentionIndex(Integer attentionIndex) {
-        this.attentionIndex = attentionIndex;
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

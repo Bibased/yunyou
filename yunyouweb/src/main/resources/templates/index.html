@@ -31,7 +31,8 @@
     </style>
 </head>
 <body>
-<div class="web-container">
+<div id="main-container">
+    <div class="web-container">
     <div  id="header-container" th:insert="~{header::header}"></div>
 
     <div class="main-content">
@@ -55,14 +56,6 @@
                         <img src="static/img/spot3.jpeg" class="spot-img" alt="Third slide">
                     </div>
                 </div>
-                <!--轮播（Carousel）导航-->
-                <!--<div id="control-box">-->
-                    <!--<a class="carousel-control" id="left-arrow" href="#myCarousel"-->
-                       <!--data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>-->
-                    <!--<a class="carousel-control" id="right-arrow" href="#myCarousel"-->
-                       <!--data-slide="next"></a>-->
-                <!--</div>-->
-
             </div>
         </div>
 
@@ -155,4 +148,6 @@
     </div>
     <div id="footer-container" th:insert="~{footer::footer}"></div>
 </div>
+</div>
 </body>
+</html>

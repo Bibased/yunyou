@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/reset.css" rel="stylesheet">
+    <link href="static/css/user-form.css" rel="stylesheet">
+</head>
+<body>
+
+
+    <form  class="form-container" method="POST" id="signinForm">
+        <div class="form-group">
+            <label >用户名</label>
+            <input class="form-control"  type="text" name="username"  maxlength="16" required>
+        </div>
+        <div class="form-group">
+            <label  >密码</label>
+            <input class="form-control" type="password" name="password"  required>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" id="signinBtn" >登录</button>
+        </div>
+    </form>
+
+    <script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/jqueryvalidate/jquery.validate.js"></script>
+    <script src="static/js/jqueryvalidate/messages_zh.js"></script>
+    <script>
+        $.validator.setDefaults({
+            submitHandler: function() {
+
+            }
+        });
+        $("#signinForm").submit(function () {
+            var fm = new FormData(document.getElementById("signinForm"));
+            $.ajax({type:"post",url:"/signin.do",data:fm,
+                processData: false,  // 告诉jQuery不要去处理发送的数据
+                contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+                success:function(data,textStatus,jqXHR){
+                    console.log(data);
+                    if (data.isSuccess){
+                    location.replace("index.html");
+                }else alert(data.failedMsg);
+            }
+            });
+            return false;
+        });
+        $().ready(function() {
+            $("#signinForm").validate({
+                rules:{
+                    password:{
+                        rangelength: [6, 16]
+                    }
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

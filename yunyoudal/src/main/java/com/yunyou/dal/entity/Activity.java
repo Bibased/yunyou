@@ -1,13 +1,9 @@
 package com.yunyou.dal.entity;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.crypto.Data;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,26 +14,31 @@ public class Activity {
     @Id
     @GeneratedValue
     private Long id;
-    private Long publishId;
+    private Long publisher;
     private String title;
     private String content;
     // 旅游花费
     private Integer expense;
-    private Integer upperPeople;
-    private Integer lowerPeople;
+    private Integer maxHC;
+    private Integer minHC;
     // 已参加人数
-    private Integer nowPeople;
+    private Integer nowHC;
+    //感兴趣人数
+    private Integer focusCount;
     // 活动天数
     private Integer activityDays;
-    private Data startTime;
-    private Data endTime;
+    @Temporal(TemporalType.DATE)
+    private Date startTime;
+    @Temporal(TemporalType.DATE)
+    private Date endTime;
     // 报名截止时间
-    private Data deadline;
-    private List<Long> cityIds;
-    private List<String> cityName;
+    @Temporal(TemporalType.DATE)
+    private Date deadline;
+    private String cityIds;
+    private String cityNames;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
-    private Data createTime;
+    private Date createTime;
 
     public Long getId() {
         return id;
@@ -47,12 +48,12 @@ public class Activity {
         this.id = id;
     }
 
-    public Long getPublishId() {
-        return publishId;
+    public Long getPublisher() {
+        return publisher;
     }
 
-    public void setPublishId(Long publishId) {
-        this.publishId = publishId;
+    public void setPublisher(Long publisher) {
+        this.publisher = publisher;
     }
 
     public String getTitle() {
@@ -79,28 +80,36 @@ public class Activity {
         this.expense = expense;
     }
 
-    public Integer getUpperPeople() {
-        return upperPeople;
+    public Integer getMaxHC() {
+        return maxHC;
     }
 
-    public void setUpperPeople(Integer upperPeople) {
-        this.upperPeople = upperPeople;
+    public void setMaxHC(Integer maxHC) {
+        this.maxHC = maxHC;
     }
 
-    public Integer getLowerPeople() {
-        return lowerPeople;
+    public Integer getMinHC() {
+        return minHC;
     }
 
-    public void setLowerPeople(Integer lowerPeople) {
-        this.lowerPeople = lowerPeople;
+    public void setMinHC(Integer minHC) {
+        this.minHC = minHC;
     }
 
-    public Integer getNowPeople() {
-        return nowPeople;
+    public Integer getNowHC() {
+        return nowHC;
     }
 
-    public void setNowPeople(Integer nowPeople) {
-        this.nowPeople = nowPeople;
+    public void setNowHC(Integer nowHC) {
+        this.nowHC = nowHC;
+    }
+
+    public Integer getFocusCount() {
+        return focusCount;
+    }
+
+    public void setFocusCount(Integer focusCount) {
+        this.focusCount = focusCount;
     }
 
     public Integer getActivityDays() {
@@ -111,51 +120,51 @@ public class Activity {
         this.activityDays = activityDays;
     }
 
-    public Data getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Data startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public Data getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Data endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
-    public Data getDeadline() {
+    public Date getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Data deadline) {
+    public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 
-    public List<Long> getCityIds() {
+    public String getCityIds() {
         return cityIds;
     }
 
-    public void setCityIds(List<Long> cityIds) {
+    public void setCityIds(String cityIds) {
         this.cityIds = cityIds;
     }
 
-    public List<String> getCityName() {
-        return cityName;
+    public String getCityNames() {
+        return cityNames;
     }
 
-    public void setCityName(List<String> cityName) {
-        this.cityName = cityName;
+    public void setCityNames(String cityNames) {
+        this.cityNames = cityNames;
     }
 
-    public Data getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Data createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 }

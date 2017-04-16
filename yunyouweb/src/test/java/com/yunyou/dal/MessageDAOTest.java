@@ -26,25 +26,25 @@ public class MessageDAOTest {
     @Test
     public void testQuery(){
         //根据单个userId查询
-        Message message =(messageDao.findByUserId(11L));
+        Message message =(messageDao.findByInfoUser(11L));
         //根据userId集合查询
         List<Long> userIds = Arrays.asList(11L,22L);
-        List<Message> messageList = messageDao.findByUserIdIn(userIds);
+        List<Message> messageList = messageDao.findByInfoUserIn(userIds);
         //根据userId集合分页查询
         PageRequest pageRequest = new PageRequest(0,10, Sort.Direction.ASC,"id");
-        Page<Message> page = messageDao.findByUserIdIn(userIds,pageRequest);
+        Page<Message> page = messageDao.findByInfoUserIn(userIds,pageRequest);
         System.out.println();
     }
     @Test
     public void testSave(){
         Message message = new Message();
         message.setContent("33");
-        message.setUserId(33L);
+        message.setPublisher(33L);
         messageDao.save(message);
     }
     @Test
     public void testDel(){
-        messageDao.deleteByUserId(33L);
+        messageDao.deleteByInfoUser(33L);
     }
     @Test
     public void testUpdate(){

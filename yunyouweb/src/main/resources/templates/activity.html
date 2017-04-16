@@ -9,13 +9,7 @@
     <link href="static/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/css/reset.css" rel="stylesheet">
     <link href="static/css/common.css" rel="stylesheet">
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="static/js/jquery-2.0.0.js"></script>
-    <script src="static/js/common.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/distpicker.data.js"></script>
-    <script src="static/js/distpicker.js"></script>
+
     <style>
         #pickForm{
             margin-bottom: 20px;
@@ -102,7 +96,7 @@
         <div  id="header-container" th:replace="~{header::header}"></div>
         <div  class="flex-container">
             <div  class="left-container">
-                <form class="form-inline" id="pickForm">
+                <form  id="pickForm">
 
                     <div id="distpicker" data-toggle="distpicker">
                         <div class="form-group">
@@ -111,13 +105,7 @@
                             <select     id="city1"></select>
                         </div>
                     </div>
-                    <script>
-                        $("#distpicker").distpicker({
-                            province: '所有',
-                            city: '所有',
-                            district: ''
-                        });
-                    </script>
+
                     <div class="form-group">
                         <span class="mr">价格</span>
                         <select name="price" >
@@ -140,11 +128,7 @@
                         </select>
                     </div>
 
-
-
-
                 </form>
-                <script>$("#distpicker").distpicker();</script>
                 <div class="strategy-list">
                     <div class="active-item">
                         <div class="calendar"><span class="glyphicon glyphicon-calendar"></span><span class="date"> 2016.11.30-2016.12.02</span> </div>
@@ -172,21 +156,24 @@
 
             </div>
 
-            <div  class="right-container">
-                <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发起活动</a></p>
-                <hr/>
-                <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
-                <ul class="user-list">
-                    <li class="user-item"><a >Daley</a></li>
-                    <li class="user-item"><a >全部</a></li>
-                </ul>
-                <hr/>
-                <p class="collect-title"><span class="glyphicon glyphicon-record"></span> 我的圈子</p>
-                <ul class="collect-list">
-                    <li class="collect-item one-line"><a>迪拜土豪</a></li>
-                </ul>
-            </div>
+            <div  class="right-container" th:insert="~{activity-right::activity-right}" id="activity-right"></div>
+
         </div>
         <div id="footer-container" th:insert="~{footer::footer}"></div>
     </div>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/common.js"></script>
+    <!-- 最新的 Bootstrap 核 JavaScript 文件 -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/distpicker.data.js"></script>
+    <script src="static/js/distpicker.js"></script>
+    <script>
+        $("#distpicker").distpicker({
+            province: '所有',
+            city: '所有',
+            district: ''
+        });
+    </script>
 </body>
+</html>

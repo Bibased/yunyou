@@ -21,17 +21,17 @@ import java.util.List;
  */
 
 /**
- * findBy为前缀的方法spring会按字段名字解析，比如findByUserId根据userId查找，findByContent根据content字段查找，
- * 还可以加上And,Or,In,Not,NotIn,OrderBy,Like等。findByUserIdIn根据userId在集合里查找，详情参考http://docs.spring.io/spring-data/jpa/docs/2.0.0.M1/reference/html/#jpa.query-methods.query-creation
+ * findBy为前缀的方法spring会按字段名字解析，比如findByInfoUser根据userId查找，findByContent根据content字段查找，
+ * 还可以加上And,Or,In,Not,NotIn,OrderBy,Like等。findByInfoUserIn根据userId在集合里查找，详情参考http://docs.spring.io/spring-data/jpa/docs/2.0.0.M1/reference/html/#jpa.query-methods.query-creation
  */
 public interface MessageDao extends JpaRepository<Message,Long> {
-    Message findByUserId(Long userId);
-    List<Message> findByUserIdIn(Collection<Long> userId);
-    Page<Message> findByUserIdIn(Collection<Long> userId,Pageable pageable);
+    Message findByInfoUser(Long userId);
+    List<Message> findByInfoUserIn(Collection<Long> infoUser);
+    Page<Message> findByInfoUserIn(Collection<Long> infoUser,Pageable pageable);
     @Modifying
     @Transactional
-    @Query("delete from Message m where m.userId=?1")
-    void deleteByUserId(Long userId);
+    @Query("delete from Message m where m.infoUser=?1")
+    void deleteByInfoUser(Long userId);
     @Modifying
     @Transactional
     @Query("update Message set content=?1 where id=?2")

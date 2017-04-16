@@ -9,16 +9,7 @@
     <link href="static/css/wangeditor/css/wangEditor.min.css" rel="stylesheet">
     <link href="static/css/reset.css" rel="stylesheet">
     <link href="static/css/common.css" rel="stylesheet">
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="static/js/jquery-2.0.0.js"></script>
-    <script src="static/js/common.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/distpicker.data.js"></script>
-    <script src="static/js/distpicker.js"></script>
-    <script src="static/js/jqueryvalidate/jquery.validate.js"></script>
-    <script src="static/js/jqueryvalidate/messages_zh.js"></script>
-    <script src="static/js/wangeditor/wangEditor.min.js"></script>
+
 
     <style>
         .form-group{
@@ -31,6 +22,10 @@
             line-height: 34px;
             height: 34px;
             display: block;
+        }
+        #distpicker select{
+            width: auto;
+            display: inline-block;
         }
         input[name=title]{
             width: 80%;
@@ -53,54 +48,75 @@
         }
     </style>
 </head>
-<body>
-    <div class="web-container">
-        <div  id="header-container" th:replace="~{header::header}"></div>
-        <div  class="flex-container">
-            <div  class="left-container">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <input class="form-control" name="title" placeholder="请输入不超过40字的标题" maxlength="40" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="date" class="form-control" name="startTime" >
-                        <span style="margin-right: 3px;">--</span>
-                        <input type="date" class="form-control" name="endTime" >
-                    </div>
-                    <div class="form-group">
-                        <label>人数上限(人)：</label>
-                        <input name="headCount" class="form-control"  maxlength="6" required>
-                    </div>
-                    <div class="form-group">
-                        <label>花费(元/人)：</label>
-                        <input name="cost" class="form-control"  maxlength="6" required>
-                    </div>
+<body >
+    <div id="main-container">
+        <div  class="web-container">
+            <div  id="header-container" th:replace="~{header::header}"></div>
+            <div  class="flex-container">
+                <div  class="left-container">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <input class="form-control" name="title" placeholder="请输入不超过40字的标题" maxlength="40" required>
+                        </div>
+                        <div class="form-group">
+                            <label>时间：</label>
+                            <input type="date" class="form-control" name="startTime" >
+                            <span style="margin-right: 3px;">--</span>
+                            <input type="date" class="form-control" name="endTime" >
+                        </div>
+                        <div id="distpicker" data-toggle="distpicker">
+                            <div class="form-group">
+                                <label>目的地：</label>
+                                <select  class="form-control" id="province1"></select>
+                                <select  class="form-control"   id="city1"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>人数上限(人)：</label>
+                            <input name="headCount" class="form-control"  maxlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label>花费(元/人)：</label>
+                            <input name="cost" class="form-control"  maxlength="6" required>
+                        </div>
 
-                    <div class="form-group">
-                        <textarea id="editor"  required></textarea>
-                    </div>
+                        <div class="form-group">
+                            <textarea id="editor"  required></textarea>
+                        </div>
 
-                </form>
+                        <div class="btn btn-success">
+                            发布
+                        </div>
+
+                    </form>
+                </div>
+
+                <div  class="right-container" th:insert="~{activity-right::activity-right}" id="activity-right"></div>
+
             </div>
-
-            <div  class="right-container">
-                <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发起活动</a></p>
-                <hr/>
-                <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
-                <ul class="user-list">
-                    <li class="user-item"><a >Daley</a></li>
-                    <li class="user-item"><a >全部</a></li>
-                </ul>
-                <hr/>
-                <p class="collect-title"><span class="glyphicon glyphicon-record"></span> 我的圈子</p>
-                <ul class="collect-list">
-                    <li class="collect-item one-line"><a>迪拜土豪</a></li>
-                </ul>
-            </div>
+            <div id="footer-container" th:insert="~{footer::footer}"></div>
         </div>
-        <div id="footer-container" th:insert="~{footer::footer}"></div>
+
     </div>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/common.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/distpicker.data.js"></script>
+    <script src="static/js/distpicker.js"></script>
+    <script src="static/js/jqueryvalidate/jquery.validate.js"></script>
+    <script src="static/js/jqueryvalidate/messages_zh.js"></script>
+    <script src="static/js/wangeditor/wangEditor.min.js"></script>
+    <script>
+        $("#distpicker").distpicker({
+            province: '无',
+            city: '无',
+            district: ''
+        });
+    </script>
     <script type="text/javascript">
         createEditor();
     </script>
 </body>
+</html>

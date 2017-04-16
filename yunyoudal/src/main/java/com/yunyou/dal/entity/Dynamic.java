@@ -1,49 +1,42 @@
 package com.yunyou.dal.entity;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Liujinglin on 17/3/18.
  */
 @Entity
-public class Dynamic {
+public class Dynamic implements Serializable{
+    private static final long serialVersionUID = 2838348336916747718L;
     @Id
     @GeneratedValue
     private Long id;
-    private Long publishId;
-    private String title;
+    private Long publisher;
     private String content;
     private String country;
     private Long cityId;
-    private List<String> picUrl;
+    private String picUrls;
     private String location;
-
+    private String comments;
+    private Integer likeCount;
+    private Integer shareCount;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createTime;
-
-    public Long getPublishId() {
-        return publishId;
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Date modifiedTime;
+    public Long getPublisher() {
+        return publisher;
     }
 
-    public void setPublishId(Long publishId) {
-        this.publishId = publishId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPublisher(Long publisher) {
+        this.publisher = publisher;
     }
 
     public String getContent() {
@@ -70,12 +63,12 @@ public class Dynamic {
         this.cityId = cityId;
     }
 
-    public List<String> getPicUrl() {
-        return picUrl;
+    public String getPicUrls() {
+        return picUrls;
     }
 
-    public void setPicUrl(List<String> picUrl) {
-        this.picUrl = picUrl;
+    public void setPicUrls(String picUrls) {
+        this.picUrls = picUrls;
     }
 
     public String getLocation() {
@@ -100,5 +93,37 @@ public class Dynamic {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public Integer getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(Integer likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public Integer getShareCount() {
+        return shareCount;
+    }
+
+    public void setShareCount(Integer shareCount) {
+        this.shareCount = shareCount;
+    }
+
+    public Date getModifiedTime() {
+        return modifiedTime;
+    }
+
+    public void setModifiedTime(Date modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
 }

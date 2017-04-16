@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div  th:fragment="activity-right">
+        <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发起活动</a></p>
+        <hr/>
+        <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
+        <ul class="user-list">
+            <li class="user-item"><a >Daley</a></li>
+            <li class="user-item"><a >全部</a></li>
+        </ul>
+        <hr/>
+        <p class="collect-title"><span class="glyphicon glyphicon-record"></span> 我的圈子</p>
+        <ul class="collect-list">
+            <li class="collect-item one-line"><a>迪拜土豪</a></li>
+        </ul>
+    </div>
+</body>
+</html>

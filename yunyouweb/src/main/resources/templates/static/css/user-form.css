@@ -1,0 +1,43 @@
+.form-container{
+    margin:150px auto 0 auto;
+    padding: 50px 70px;
+    box-sizing: content-box;
+    background: rgba(224,224,224,0.4);
+}
+#signinForm {
+    width: 200px;
+}
+#signupForm {
+    width: 300px;
+}
+#signupForm label:nth-of-type(1),
+#signinForm label:nth-of-type(1) {
+    width: 100px;
+}
+label.error {
+    color: red;
+}
+#signupForm label {
+    display: inline;
+    float: left;
+}
+input:not([type=radio]) {
+    width: 200px;
+}
+.gender-group li {
+    display: inline;
+    margin-right: 10px;
+}
+.gender-group li input {
+    margin-right: 3px;
+}
+#signinBtn {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+}
+#signupBtn {
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+}

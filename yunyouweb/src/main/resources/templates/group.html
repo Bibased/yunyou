@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wander.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/reset.css" rel="stylesheet">
+    <link href="static/css/common.css" rel="stylesheet">
+
+
+    <style>
+        .chat-header{
+            padding: 5px;
+            background:#eeeeee;
+            height: 30px;
+            line-height: 20px;
+        }
+        .chat-body{
+            height: 350px;
+            overflow-y: scroll;
+            padding: 5px;
+            border-bottom: 1px solid #cccccc;
+        }
+        .message{
+            margin-bottom: 5px;
+        }
+        .time{
+            text-align: center;
+            margin-bottom: 3px;
+        }
+        .from-user{
+            padding-top: 13px;
+        }
+        .figure{
+            width: 35px;
+            height: 35px;
+        }
+        .receive .from-user{
+            float: left;
+            margin-right: 5px;
+        }
+        .send .from-user{
+            margin-left: 5px;
+            float: right;
+        }
+        .receive .content-box{
+            float: left;
+        }
+        .send .content-box{
+            float: right;
+        }
+        .username{
+            margin-bottom: 5px;
+        }
+        .content{
+            width:auto;
+            background:dodgerblue;
+            border-radius:4px; /* 圆角 */
+            padding: 7px;
+        }
+        .icon-caret-left,.icon-caret-right{
+            font-size: 25px;
+            color:dodgerblue;
+        }
+        .icon-caret-left{
+            float: left;
+        }
+        .icon-caret-right{
+            float: right;
+        }
+        .chat-footer{
+            border:1px solid #dddddd;
+        }
+        .sendMsg{
+            height: 50px;
+            border:none;
+            outline: none;
+        }
+    </style>
+</head>
+<body >
+    <div id="main-container">
+        <div  class="web-container">
+            <div  id="header-container" th:replace="~{header::header}"></div>
+            <div  class="flex-container">
+                <div  class="left-container">
+                    <div class="chat-dialog">
+                        <h5 class="chat-header">巴塞罗那5天游</h5>
+                        <div class="chat-body">
+                            <div class="receive message">
+                                <div class="time grey">2017/03/16 12:04</div>
+                                <div class="from-user ib">
+                                    <div class="figure bg-cover" style="background: url('static/img/user.PNG');"></div>
+                                </div>
+                                <div class="content-box ib">
+                                    <div class="username">Tommy</div>
+                                    <span class="icon-caret-left"></span>
+                                    <div class="content">Hello</div>
+                                </div>
+                            </div>
+                            <div class="receive message">
+                                <div class="time grey">2017/03/16 12:04</div>
+                                <div class="from-user ib">
+                                    <div class="figure bg-cover" style="background: url('static/img/user.PNG');"></div>
+                                </div>
+                                <div class="content-box ib">
+                                    <div class="username">Tommy</div>
+                                    <span class="icon-caret-left"></span>
+                                    <div class="content">Hello</div>
+                                </div>
+                            </div>
+
+                            <div class="message send">
+                                <div class="time grey">2017/03/16 12:04</div>
+                                <div class="from-user ib">
+                                    <div class="figure bg-cover" style="background: url('static/img/user.PNG');"></div>
+                                </div>
+                                <div class="content-box ib">
+                                    <div class="username">Tommy</div>
+                                    <span class="icon-caret-right"></span>
+                                    <div class="content">Hello</div>
+                                </div>
+                            </div>
+
+                        </div><!-- chat-body end --->
+                        <div class="chat-footer">
+                            <div contenteditable="true" class="sendMsg"></div>
+                            <div class="toolbar">
+                                <button class="btn btn-sm btn-default pull-right">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div  class="right-container" th:insert="~{activity-right::activity-right}" id="activity-right"></div>
+            </div>
+            <div id="footer-container" th:insert="~{footer::footer}"></div>
+        </div>
+
+    </div>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/common.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>

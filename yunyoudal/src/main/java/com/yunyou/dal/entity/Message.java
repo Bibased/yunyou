@@ -3,24 +3,27 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by dell on 2017/3/18.
  */
 @Entity
-public class Message {
+public class Message implements Serializable{
+    private static final long serialVersionUID = 386532739580677509L;
     @Id
     @GeneratedValue
     private Long id;
-    private Long userId;
+    private Long infoUser;
+    private Long publisher;
     private String content;
+    private String anchorUrl;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date infoTime;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createTime;
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date modifiedTime;
 
     public Long getId() {
         return id;
@@ -30,12 +33,36 @@ public class Message {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getInfoUser() {
+        return infoUser;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setInfoUser(Long infoUser) {
+        this.infoUser = infoUser;
+    }
+
+    public Long getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Long publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getAnchorUrl() {
+        return anchorUrl;
+    }
+
+    public void setAnchorUrl(String anchorUrl) {
+        this.anchorUrl = anchorUrl;
+    }
+
+    public Date getInfoTime() {
+        return infoTime;
+    }
+
+    public void setInfoTime(Date infoTime) {
+        this.infoTime = infoTime;
     }
 
     public String getContent() {
@@ -54,11 +81,4 @@ public class Message {
         this.createTime = createTime;
     }
 
-    public Date getModifiedTime() {
-        return modifiedTime;
-    }
-
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
 }

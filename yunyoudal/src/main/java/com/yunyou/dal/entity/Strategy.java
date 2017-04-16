@@ -1,38 +1,40 @@
 package com.yunyou.dal.entity;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.TemporalType;
-import javax.xml.crypto.Data;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Liujinglin on 17/3/18.
  */
 @Entity
-public class Strategy {
+public class Strategy implements Serializable{
     @Id
     @GeneratedValue
     private Long id;
-    private Long publishId;
+    private Long publisher;
     private String title;
     private String content;
     // 封面Url
     private String coverUrl;
     // 花费
     private Integer expense;
+    //喜欢人数
+    private Integer likeCount;
     private Integer days;
-    private List<Long> cityId;
-    private List<String> cityName;
-    private Data startTime;
-    private Data endTime;
+    private String cityIds;
+    private String cityNames;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endTime;
 
-    @javax.persistence.Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
-    private Data createTime;
+    private Date createTime;
 
     public Long getId() {
         return id;
@@ -40,14 +42,6 @@ public class Strategy {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getPublishId() {
-        return publishId;
-    }
-
-    public void setPublishId(Long publishId) {
-        this.publishId = publishId;
     }
 
     public String getTitle() {
@@ -90,43 +84,59 @@ public class Strategy {
         this.days = days;
     }
 
-    public List<Long> getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(List<Long> cityId) {
-        this.cityId = cityId;
-    }
-
-    public List<String> getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(List<String> cityName) {
-        this.cityName = cityName;
-    }
-
-    public Data getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Data startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public Data getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Data endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
-    public Data getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Data createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Long getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Long publisher) {
+        this.publisher = publisher;
+    }
+
+    public Integer getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(Integer likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public String getCityIds() {
+        return cityIds;
+    }
+
+    public void setCityIds(String cityIds) {
+        this.cityIds = cityIds;
+    }
+
+    public String getCityNames() {
+        return cityNames;
+    }
+
+    public void setCityNames(String cityNames) {
+        this.cityNames = cityNames;
     }
 }

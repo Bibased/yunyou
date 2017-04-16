@@ -9,14 +9,7 @@
     <link href="static/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/css/reset.css" rel="stylesheet">
     <link href="static/css/common.css" rel="stylesheet">
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="static/js/jquery-2.0.0.js"></script>
-    <script src="static/js/common.js"></script>
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/distpicker.data.js"></script>
-    <script src="static/js/distpicker.js"></script>
     <style>
         .active-summary li{
             margin-right: 30px;
@@ -43,21 +36,18 @@
                 </div>
             </div>
 
-            <div  class="right-container">
-                <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发起活动</a></p>
-                <hr/>
-                <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
-                <ul class="user-list">
-                    <li class="user-item"><a >Daley</a></li>
-                    <li class="user-item"><a >全部</a></li>
-                </ul>
-                <hr/>
-                <p class="collect-title"><span class="glyphicon glyphicon-record"></span> 我的圈子</p>
-                <ul class="collect-list">
-                    <li class="collect-item one-line"><a>迪拜土豪</a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="footer-container" th:insert="~{footer::footer}"></div>
+            <div  class="right-container" th:insert="~{activity-right::activity-right}" id="activity-right"></div>
+
+            <div id="footer-container" th:insert="~{footer::footer}"></div>
     </div>
+    </div>
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="static/js/jquery-2.0.0.js"></script>
+        <script src="static/js/common.js"></script>
+
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="static/js/bootstrap.min.js"></script>
+        <script src="static/js/distpicker.data.js"></script>
+        <script src="static/js/distpicker.js"></script>
 </body>
+</html>
