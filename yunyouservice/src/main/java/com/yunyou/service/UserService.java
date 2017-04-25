@@ -1,4 +1,6 @@
 package com.yunyou.service;
+import com.yunyou.dal.cache.CacheDAO;
+import com.yunyou.dal.cache.co.UserCO;
 import com.yunyou.dal.dao.UserDAO;
 import com.yunyou.dal.entity.User;
 import org.springframework.stereotype.Service;
@@ -24,5 +26,25 @@ public class UserService {
         }
         return false;
     }
-
+    public UserCO query(Long id){
+        UserCO userCO = null;
+        try {
+            userCO = CacheDAO.getUserById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if (null == userCO) {
+            userCO = converToUserCO(userDAO.getOne(id));
+            CacheDAO.setUser(id,userCO);
+        }
+        return userCO;
+    }
+    public  boolean save(User user){
+        user = userDAO.save(user);
+        CacheDAO.setUser(user.getId(),converToUserCO(user));
+        return true;
+    }
+    public UserCO converToUserCO(User user){
+        return new UserCO(user.getUsername(),user.getPicUrl(),0);
+    }
 }

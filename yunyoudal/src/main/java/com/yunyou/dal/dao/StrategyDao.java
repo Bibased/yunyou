@@ -21,4 +21,9 @@ public interface StrategyDao extends JpaRepository<Strategy, Long> {
     @Override
     Page<Strategy> findAll(Pageable pageable);
 
+    Page<Strategy> findByPublisherIn(Collection<Long> Ids,Pageable pageable);
+
+    Page<Strategy> findByCityIdsLike(String cityId,Pageable pageable);
+
+    Page<Strategy> findByPublisherInAndCityIdsLike(Collection<Long> Ids,String cityId, Pageable pageable);
 }

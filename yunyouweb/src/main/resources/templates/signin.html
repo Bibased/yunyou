@@ -19,6 +19,7 @@
             <label  >密码</label>
             <input class="form-control" type="password" name="password"  required>
         </div>
+        <a href="/signup.html"  style="display:block;text-align:center;margin-bottom: 5px;">没有账号,注册>></a>
         <div class="form-group">
             <button class="btn btn-primary" id="signinBtn" >登录</button>
         </div>
@@ -30,23 +31,23 @@
     <script>
         $.validator.setDefaults({
             submitHandler: function() {
-
+                return submitForm();
             }
         });
-        $("#signinForm").submit(function () {
-            var fm = new FormData(document.getElementById("signinForm"));
-            $.ajax({type:"post",url:"/signin.do",data:fm,
-                processData: false,  // 告诉jQuery不要去处理发送的数据
-                contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
-                success:function(data,textStatus,jqXHR){
-                    console.log(data);
-                    if (data.isSuccess){
-                    location.replace("index.html");
-                }else alert(data.failedMsg);
-            }
-            });
-            return false;
-        });
+       function submitForm() {
+           var fm = new FormData(document.getElementById("signinForm"));
+           $.ajax({type:"post",url:"/signin.do",data:fm,
+               processData: false,  // 告诉jQuery不要去处理发送的数据
+               contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+               success:function(data,textStatus,jqXHR){
+                   console.log(data);
+                   if (data.isSuccess){
+                       location.href = document.referrer;
+                   }else alert(data.failedMsg);
+               }
+           });
+           return false;
+       }
         $().ready(function() {
             $("#signinForm").validate({
                 rules:{

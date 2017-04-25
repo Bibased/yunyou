@@ -55,7 +55,11 @@
 }
 #header-right a{
   display: inline-block;
+  height: 36px;
   margin: 5px 0;
+}
+#user-group{
+  height: 36px;
 }
 #search-box,#user-group{
   float: right;
@@ -84,6 +88,7 @@
 #user-pic{
   width: 30px;
   height: 30px;
+  border-radius: 30px;
 }
 //header-end
 
@@ -180,9 +185,10 @@ label.error{
 //layouy end
 
 //editor start
+
 .wangEditor-txt{
-  height: 400px !important;
-  overflow-y: scroll;
+  height: auto !important;
+  min-height: 300px;
 }
 .wangEditor-fullscreen .wangEditor-txt{
   height: 100% !important;

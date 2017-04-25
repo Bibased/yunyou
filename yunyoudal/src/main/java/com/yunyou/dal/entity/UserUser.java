@@ -12,7 +12,6 @@ import java.io.Serializable;
  * Created by lds on 2017/4/16.
  */
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 public class UserUser implements Serializable{
     private static final long serialVersionUID = -2394859409239782287L;
     @Id

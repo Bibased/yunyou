@@ -4,7 +4,6 @@
     <title>Wander.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/reset.css" rel="stylesheet">
     <link href="static/css/common.css" rel="stylesheet">
@@ -74,6 +73,7 @@
             width: 100px;
             height: 100px;
             margin:0 6px 6px 0;
+            display: inline-block;
             border: 1px solid #e3e3e3;
         }
         .glyphicon-plus{
@@ -94,52 +94,57 @@
             <div  id="header-container" th:replace="~{header::header}"></div>
             <div id="dynamic-container" class="flex-container">
                 <div id="page-box" class="left-container">
-                    <ul id="dyn-ul">
-                        <li  class="dynamic-item" v-for="item in items">
-                            <figure class="user-figure">
-                                <img v-bind:src="item.userPic">
-                                <figcaption>
-                                    <h5>{{item.publisher}}</h5>
-                                    <h5 class="grey">{{item.publishTime}}</h5>
-                                </figcaption>
-                            </figure>
-                            <div class="dynamic-content">
-                                <h5>{{item.content}}</h5>
-                                <div class="pic-list" >
-                                    <div v-for="picUrl in item.picUrlList">
-                                         <figure class="pic-box bg-cover" :style="'background-image:url('+picUrl+')'"></figure>
+                    <div v-if="totalPage>0">
+                        <ul id="dyn-ul">
+                            <li  class="dynamic-item" v-for="item in items">
+                                <figure class="user-figure">
+                                    <img v-bind:src="item.userPic">
+                                    <figcaption>
+                                        <h5>{{item.publisher}}</h5>
+                                        <h5 class="grey">{{item.publishTime}}</h5>
+                                    </figcaption>
+                                </figure>
+                                <div class="dynamic-content">
+                                    <h5>{{item.content}}</h5>
+                                    <div class="pic-list" >
+                                        <div v-for="picUrl in item.picUrlList">
+                                             <figure class="pic-box bg-cover" :style="'background-image:url('+picUrl+')'"></figure>
+                                        </div>
+
+                                    </div>
+                                    <div class="dynamic-footer">
+                                        <ul >
+                                            <li class="location"><span class="glyphicon glyphicon-map-marker"></span>
+                                                {{item.location}} <li>
+                                            <li class="great"><a ><span class="glyphicon glyphicon-thumbs-up"></span>
+                                            ({{item.likeCount}})</a></li>
+                                            <li class="comment"><a ><span class="glyphicon glyphicon-comment"></span>
+                                                ({{item.commentList.length}})</a></li>
+                                            <li class="share"><a ><span class="glyphicon glyphicon-share-alt"></span>
+                                                ({{item.shareCount}})</a></li>
+                                        </ul>
                                     </div>
 
-                                </div>
-                                <div class="dynamic-footer">
-                                    <ul >
-                                        <li class="location"><span class="glyphicon glyphicon-map-marker"></span>
-                                            {{item.location}} <li>
-                                        <li class="great"><a ><span class="glyphicon glyphicon-thumbs-up"></span>
-                                        ({{item.likeCount}})</a></li>
-                                        <li class="comment"><a ><span class="glyphicon glyphicon-comment"></span>
-                                            ({{item.commentList.length}})</a></li>
-                                        <li class="share"><a ><span class="glyphicon glyphicon-share-alt"></span>
-                                            ({{item.shareCount}})</a></li>
-                                    </ul>
-                                </div>
-
-                            </div><!--dynamic-content end-->
-                        </li><!--dynamic-item end-->
-                    </ul>
-                    <ul class="pager">
-                        <li class="previous"><a v-on:click="prev()"> 前一页</a></li>
-                        <li>{{currentPage}}/{{totalPage}}</li>
-                        <li class="next"><a v-on:click="next()">下一页</a></li>
-                    </ul>
+                                </div><!--dynamic-content end-->
+                            </li><!--dynamic-item end-->
+                        </ul>
+                        <ul class="pager">
+                            <li class="previous"><a v-on:click="prev()"> 前一页</a></li>
+                            <li>{{currentPage}}/{{totalPage}}</li>
+                            <li class="next"><a v-on:click="next()">下一页</a></li>
+                        </ul>
+                    </div>
+                <div v-else>
+                    此用户没有没有发表动态哦~~~
+                </div>
                 </div><!-- left-container end-->
                 <div id="dynamic-right" class="right-container">
                     <p class="publish-trigger"><a data-toggle="modal" data-target="#dynamicModal"> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
                     <hr/>
                     <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
                     <ul class="user-list" id="star-list">
-                        <li class="user-item" v-for="user in stars"><a @click="getPageByUserId(user.id)" >{{user.username}}</a></li>
-                        <li class="user-item"><a onclick="getPageByUserId(null)"></a></li>
+                        <li class="user-item" v-for="user in stars"><a :href="jumpUrl+'?uid='+user.id" >{{user.username}}</a></li>
+                        <li class="user-item"><a :href="jumpUrl">全部</a></li>
                     </ul>
                 </div>
 
@@ -150,11 +155,15 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <form class="form-horizontal" method="POST" id="dynamicForm">
+                            <form class="form-horizontal" method="POST" id="dynamicForm" enctype="multipart/form-data" onsubmit="return publish()" >
+                                <input name="location" value="大连理工大学(开发区校区)" type="hidden">
                                 <textarea name="content" placeholder="说点什么吧...."></textarea>
                                 <div class="img-container">
-                                    <div class="img-box bg-cover" style="background-image: url('static/img/40.jpg');"></div>
-                                    <div class="img-box glyphicon glyphicon-plus"></div>
+                                    <div id="img-list">
+                                        <div class="img-box bg-cover" v-for="img in imgs" :style="'background-image:url('+img+')'"></div>
+                                    </div>
+                                    <div class="img-box glyphicon glyphicon-plus" onclick="browseFile()"></div>
+                                    <input name="imgs" type="file" id="uploadImg" multiple="multiple" accept="image/*" style="display: none;">
                                 </div>
                                 <div >
                                     <div class="pb-location ib"><span class="glyphicon glyphicon-map-marker"></span>大连市开发区 </div>
@@ -177,53 +186,40 @@
     <script src="static/js/vue.js"></script>
     <script>
         var url = "/dynamic/query";
-        var userId=null;
-        var app = new Vue({
-            el:"#page-box",
+        var Request = new GetRequest();
+        var userId = Request["uid"];
+        var app = getItemsApp(url,userId,null);
+        app.getPage(1);
+        var starApp = getStarApp("/dynamic.html");
+        starApp.getStars();
+        var imgApp = new Vue({
+            el:"#img-list",
             data:{
-                items:'',
-                currentPage:1,
-                totalPage:''
-            },
-            methods:{
-                prev: function (){
-                    if(this.currentPage <= 1) return;
-                    this.currentPage --;
-                    getPage(this.currentPage);
-                },
-                next:function() {
-                    if(this.currentPage >= this.totalPage) return;
-                    this.currentPage ++;
-                    getPage(this.currentPage);
+                imgs:''
+            }
+        });
+        function browseFile() {
+            $("#uploadImg").click();
+        }
+        $('#uploadImg').change(function(event) {
+            imgApp.imgs = creteImgs($("#uploadImg")[0]);
+        });
+        function publish() {
+            var fm = new FormData(document.getElementById("dynamicForm"));
+            $.ajax({type:"post",url:"/dynamic/publish",data:fm,
+                processData: false,  // 告诉jQuery不要去处理发送的数据
+                contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+                success:function(data,textStatus,jqXHR){
+                    console.log(data);
+                    if (data.isSuccess){
+                       alert("发布成功");
+                       setInterval(function () {
+                           location.reload();
+                       },90);
+                    }else alert(data.failedMsg);
                 }
-            }
-        });
-        getPage(1);
-        getStars();
-        var starCtrl = new Vue({
-            el:"#star-list",
-            data:{
-                stars:''
-            }
-        });
-
-        function getPage(index) {
-            $.ajax({url:url,async:false,data:{pageId:index,userIds:userId,size:1}}).success(function (res,status,jqXHR){
-                console.log(res);
-                app.totalPage  = res.totalPages;
-                app.items = res.content;
-                app.currentPage = index;
             });
-        }
-        function getPageByUserId(id) {
-            userId=id;
-            getPage(1);
-        }
-        function getStars() {
-            $.ajax({url:'/user/star/query',async:false}).success(function (res,status,jqXHR){
-                console.log(res);
-              starCtrl.stars = res;
-            });
+            return false;
         }
     </script>
 </body>

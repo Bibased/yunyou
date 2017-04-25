@@ -11,14 +11,13 @@
 
 
 <form class="form-container" method="POST" id="signupForm">
-
     <div class="form-group">
         <label  >邮箱</label>
         <input class="form-control" name="email" type="email" required>
     </div>
 
     <div class="form-group">
-        <label  >昵称</label>
+        <label  >用户名</label>
         <input class="form-control" type="text" name="username"  required>
     </div>
     <div class="form-group">
@@ -33,16 +32,18 @@
 
     <div class="form-group">
         <label  >漫步宣言</label>
-        <input class="form-control" name="motto" maxlength="60" required>
+        <input class="form-control" name="motto" maxlength="60" >
     </div>
 
     <div class="form-group">
         <label  >性别</label>
         <ul class="gender-group">
+            <li><input type="radio" name="gender" value="0" checked>不告诉你</li>
             <li><input type="radio" name="gender" value="1">男</li>
             <li><input  type="radio" name="gender" value="2">女</li>
         </ul>
     </div>
+    <a href="/signin.html"  style="display:block;text-align:center;margin-bottom: 5px;">已有账号,登录>></a>
 
     <div class="form-group">
         <button class="btn btn-primary" id="signupBtn" >注册</button>
@@ -56,8 +57,13 @@
     <script src="static/js/jqueryvalidate/jquery.validate.js"></script>
     <script src="static/js/jqueryvalidate/messages_zh.js"></script>
     <script>
-        $("#signinForm").submit(function () {
-            var fm = new FormData(document.getElementById("signinForm"));
+        $.validator.setDefaults({
+            submitHandler: function() {
+                return submitForm();
+            }
+        });
+        function submitForm() {
+            var fm = new FormData(document.getElementById("signupForm"));
             $.ajax({type:"post",url:"/signup.do",data:fm,
                 processData: false,  // 告诉jQuery不要去处理发送的数据
                 contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
@@ -68,13 +74,13 @@
                 }
             });
             return false;
-        });
+        }
         $().ready(function() {
 
             $("#signupForm").validate({
                 rules:{
                     username:{
-                        rangelength: [6, 16]
+                        maxlength:  16
                     },
                     password:{
                         rangelength: [6, 16]

@@ -1,5 +1,8 @@
 package com.yunyou.dal.entity;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,6 +11,7 @@ import java.util.Date;
  * Created by lds on 2017/4/16.
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class ChatRoom implements Serializable{
     private static final long serialVersionUID = -4111111611976075993L;
     @Id
@@ -18,6 +22,7 @@ public class ChatRoom implements Serializable{
     private String board;
     private String title;
     @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private Date creatTime;
     @Temporal(TemporalType.DATE)
     private Date endTime;

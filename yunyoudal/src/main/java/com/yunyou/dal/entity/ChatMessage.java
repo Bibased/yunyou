@@ -1,5 +1,8 @@
 package com.yunyou.dal.entity;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -7,6 +10,7 @@ import java.util.Date;
  * Created by lds on 2017/4/16.
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class ChatMessage {
     @Id
     @GeneratedValue
@@ -17,7 +21,8 @@ public class ChatMessage {
     private Integer type;
     private String txtOrUrl;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    @CreatedDate
+    private Date createTime;
 
     public Long getId() {
         return id;
@@ -59,11 +64,11 @@ public class ChatMessage {
         this.txtOrUrl = txtOrUrl;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

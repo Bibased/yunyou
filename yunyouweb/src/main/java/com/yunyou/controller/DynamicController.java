@@ -2,16 +2,23 @@ package com.yunyou.controller;
 import com.yunyou.common.AppResult;
 import com.yunyou.common.constant.GlobalConstant;
 import com.yunyou.common.util.DataConvertUtil;
+import com.yunyou.dal.cache.CacheDAO;
 import com.yunyou.dal.cache.co.UserCO;
 import com.yunyou.dal.dao.DynamicDao;
 import com.yunyou.dal.entity.Dynamic;
+import com.yunyou.service.FileService;
+import com.yunyou.service.UserService;
+import com.yunyou.util.SessionUtil;
 import com.yunyou.vo.DynamicVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +31,10 @@ import java.util.stream.Collectors;
 public class DynamicController {
     @Resource
     private DynamicDao dynamicDao;
+    @Resource
+    private UserService userService;
+    @Resource
+    FileService fileService;
     @RequestMapping("query")
     @ResponseBody
     public Page query(Long[] userIds, Integer size, Integer pageId){
@@ -40,7 +51,10 @@ public class DynamicController {
     }
     @RequestMapping("publish")
     @ResponseBody
-    public AppResult publish(Dynamic dynamic){
+    public AppResult publish(Dynamic dynamic, List<MultipartFile> imgs, HttpSession session){
+        Long userId = SessionUtil.getUserId(session);
+        dynamic.setPublisher(userId);
+        dynamic.setPicUrls(fileService.dealUploadImg(imgs,userId));
         try {
             dynamicDao.save(dynamic);
         }catch (Exception e){
@@ -53,8 +67,7 @@ public class DynamicController {
         List list = dynamicPage.getContent().stream().map(dynamic -> {
             DynamicVo dynamicVo = new DynamicVo();
             BeanUtils.copyProperties(dynamic,dynamicVo);
-//            UserCO userCO = CacheDAO.getUserById(dynamic.getPublisher());
-            UserCO userCO = new UserCO("John","/static/img/user.PNG",1);
+            UserCO userCO = userService.query(dynamic.getPublisher());
             dynamicVo.setPublisher(userCO.getUsername());
             dynamicVo.setUserPic(userCO.getUserPic());
             dynamicVo.setPicUrlList(DataConvertUtil.toList(dynamic.getPicUrls()));

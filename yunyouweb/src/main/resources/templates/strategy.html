@@ -4,15 +4,14 @@
     <title>Wander.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/reset.css" rel="stylesheet">
     <link href="static/css/common.css" rel="stylesheet">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="static/js/jquery-2.0.0.js"></script>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/moment.js"></script>
+    <script src="static/js/vue.js"></script>
+    <script src="static/js/common.js"></script>
     <script src="static/js/distpicker.data.js"></script>
     <script src="static/js/distpicker.js"></script>
     <style>
@@ -35,7 +34,7 @@
         }
         .strategy-left{
             width: 200px;
-            height: 100%;
+            height: 124px;
             margin-right: 10px;
         }
         .strategy-right{
@@ -70,11 +69,9 @@
         .strategy-footer *:not(.time){
             font-size:1.2em;
         }
-        .collect-list{
-            width: 100%;
-        }
-        .collect-item{
-            margin-bottom: 6px;
+        .link-box{
+            display: block;
+            overflow: visible;
         }
     </style>
 </head>
@@ -82,123 +79,84 @@
     <div class="web-container">
         <div  id="header-container" th:replace="~{header::header}"></div>
         <div  class="flex-container">
-            <div  class="left-container">
+            <div  class="left-container" >
+
                 <form class="form-inline" id="dist-form">
-                    <div id="distpicker" data-toggle="distpicker">
-                        <div class="form-group">
-                            <span style="margin-right: 5px;">目的地</span>
-                            <label class="sr-only" for="province1">国家</label>
-                            <select  id="province1"></select>
+                    <div id="distpicker" >
+                        <div class="form-group" onchange="filterCity()">
+                            <label class="sr-only" >国家</label>
+                            <select ></select>
                         </div>
                         <div class="form-group">
-                            <label class="sr-only" for="city1">城市</label>
-                            <select     id="city1"></select>
+                            <label class="sr-only" >城市</label>
+                            <select name="city" id="city" onchange="filterCity()">
+                            </select>
                         </div>
                     </div>
+
                 </form>
-                <script>
-                    $("#distpicker").distpicker({
-                    province: '所有',
-                    city: '所有',
-                    district: ''
-                });
-                </script>
-                <div class="strategy-list">
-                    <div class="strategy-item">
-                        <figure class="strategy-left bg-cover" style="background-image: url('static/img/strategy.JPG');"></figure>
-                        <div class="strategy-right">
-                           <div class="strategy-content">
-                               <h4 class="strategy-title one-line">巴塞罗那，吃喝玩乐全纪录</h4>
-                               <p class="strategy-brief">
-                                   Duis sollicitudin hendrerit magna eu dictum. In at sapien vel nunc maximus dictum. Pellentesque orci quam, volutpat vitae placerat vel, bibendum non tellus. Donec turpis ipsum, porta in nulla ac, scelerisque pretium nulla. Nunc in arcu a lectus tincidunt fringilla vel malesuada felis. Nulla pellentesque vestibulum lorem, ut pretium tortor. Curabitur dictum dolor ut ex ullamcorper, nec luctus dui tristique. Pellentesque congue nibh sed diam tincidunt feugiat at id nunc. Etiam vitae lorem aliquet, mollis ante eu, eleifend risus. Pellentesque vel consectetur magna. Integer vitae quam auctor, blandit ligula eu, auctor ligula. Proin quis libero at nibh fringilla euismod. Phasellus ut suscipit libero. Maecenas congue, tellus quis dictum blandit, magna turpis ullamcorper sem, a accumsan mi massa vel arcu.
-                               </p>
-                           </div>
-                            <ul class="strategy-footer">
-                                <li><span class="glyphicon glyphicon-map-marker"></span>Barcelona</li>
-                                <li><span class="glyphicon glyphicon-user"></span> Daley</li>
-                                <li><span class="glyphicon glyphicon-heart-empty"></span> 666</li>
-                                <li class="grey time">发表于 16-11-10</li>
-                            </ul>
-                        </div>
+                <div id="page-box">
+                    <div v-if="totalPage > 0">
+                        <ul class="strategy-list">
+
+                            <li class="strategy-item" v-for="item in items">
+                                <a :href="'/strategy/detail?id='+item.id" class="link-box">
+                                <figure class="strategy-left bg-cover" :style="'background-image: url('+item.coverUrl+')'"></figure>
+                                </a>
+
+                                <div class="strategy-right">
+                                   <div class="strategy-content">
+                                       <a :href="'/strategy/detail?id='+item.id" class="link-box">
+                                       <h4 class="strategy-title one-line">{{item.title}}</h4>
+                                       <p class="strategy-brief">{{item.summary}}</p>
+                                       </a>
+                                   </div>
+                                    <ul class="strategy-footer">
+                                        <li><span class="glyphicon glyphicon-user"></span> {{item.publisherName}}</li>
+                                        <li><span class="glyphicon glyphicon-heart-empty"></span> {{item.likeCount}}</li>
+                                        <li class="grey time">发表于 {{item.createTime | moment }}</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="pager">
+                            <li class="previous"><a v-on:click="prev()"> 前一页</a></li>
+                            <li>{{currentPage}}/{{totalPage}}</li>
+                            <li class="next"><a v-on:click="next()">下一页</a></li>
+                        </ul>
                     </div>
-                    <div class="strategy-item">
-                        <figure class="strategy-left bg-cover" style="background-image: url('static/img/strategy.JPG');"></figure>
-                        <div class="strategy-right">
-                           <div class="strategy-content">
-                               <h4 class="strategy-title one-line">巴塞罗那，吃喝玩乐全纪录！</h4>
-                               <p class="strategy-brief">
-                                   Duis sollicitudin hendrerit magna eu dictum. In at sapien vel nunc maximus dictum. Pellentesque orci quam, volutpat vitae placerat vel, bibendum non tellus. Donec turpis ipsum, porta in nulla ac, scelerisque pretium nulla. Nunc in arcu a lectus tincidunt fringilla vel malesuada felis. Nulla pellentesque vestibulum lorem, ut pretium tortor. Curabitur dictum dolor ut ex ullamcorper, nec luctus dui tristique. Pellentesque congue nibh sed diam tincidunt feugiat at id nunc. Etiam vitae lorem aliquet, mollis ante eu, eleifend risus. Pellentesque vel consectetur magna. Integer vitae quam auctor, blandit ligula eu, auctor ligula. Proin quis libero at nibh fringilla euismod. Phasellus ut suscipit libero. Maecenas congue, tellus quis dictum blandit, magna turpis ullamcorper sem, a accumsan mi massa vel arcu.
-                               </p>
-                           </div>
-                            <ul class="strategy-footer">
-                                <li><span class="glyphicon glyphicon-map-marker"></span>Barcelona</li>
-                                <li><span class="glyphicon glyphicon-user"></span> Daley</li>
-                                <li><span class="glyphicon glyphicon-heart-empty"></span> 666</li>
-                                <li class="grey time">发表于 16-11-10</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div v-else>此用户没有没有发表攻略哦~~~</div>
                 </div>
 
             </div>
 
-            <div  class="right-container">
-                <p class="publish-trigger"><a> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
-                <hr/>
-                <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
-                <ul class="user-list">
-                    <li class="user-item"><a >Daley</a></li>
-                    <li class="user-item"><a >全部</a></li>
-                </ul>
-                <hr/>
-                <p class="collect-title"><span class="glyphicon glyphicon-bookmark"></span> 我的收藏</p>
-                <ul class="collect-list">
-                    <li class="collect-item one-line"><a>巴塞罗那，吃喝玩乐全纪录啦啦啦！</a></li>
-                </ul>
-            </div>
+            <div  class="right-container" th:insert="~{/component/strategy-right::strategy-right}"></div>
         </div>
+
         <div id="footer-container" th:insert="~{footer::footer}"></div>
     </div>
     <script>
+
         var url = "/strategy/query";
-        var userId=null;
-        var app = new Vue({
-            el:"#page-box",
-            data:{
-                items:'',
-                currentPage:1,
-                totalPage:''
-            },
-            methods:{
-                prev: function (){
-                    if(this.currentPage <= 1) return;
-                    this.currentPage --;
-                    getPage(this.currentPage);
-                },
-                next:function() {
-                    if(this.currentPage >= this.totalPage) return;
-                    this.currentPage ++;
-                    getPage(this.currentPage);
-                }
-            }
-        });
-        getPage(1);
-        function getPage(index) {
-            $.ajax({url:url,async:false,data:{pageId:index,userIds:userId,size:1}}).success(function (res,status,jqXHR){
-                console.log(res);
-                app.totalPage  = res.totalPages;
-                app.items = res.content;
-                app.currentPage = index;
-                setInterval(function () {
-                    $(".pic-box").each(function () {
-                        $(this).css({"background-image":"url('"+$(this).attr("background")+"')"});
-                    });
-                },10);
+        var Request = new GetRequest();
+        var userId = Request["uid"];
+        var cityCode = $("#city option:selected").attr("data-code");
+        var app = getItemsApp(url,userId,cityCode);
+        app.getPage(1);
+        $(function () {
+            $("#distpicker").distpicker({
+                province: '所有',
+                city: '所有',
+                district: ''
             });
-        }
-        function getPageByUserId(id) {
-            userId=id;
-            getPage(1);
+        });
+        Vue.filter('moment', function (value, formatString) {
+            formatString = formatString || 'YY-MM-DD';
+            return moment(value).format(formatString);
+        });
+        function filterCity() {
+           app.cityCode = $("#city option:selected").attr("data-code");
+           app.getPage(1);
         }
     </script>
 </body>

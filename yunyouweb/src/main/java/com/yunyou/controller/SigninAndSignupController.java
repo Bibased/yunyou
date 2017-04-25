@@ -20,8 +20,6 @@ import javax.servlet.http.HttpSession;
 public class SigninAndSignupController {
     @Resource
     private UserService userService;
-    @Resource
-    private UserDAO userDAO;
     @RequestMapping("/signin.do")
     public @ResponseBody AppResult signin(String username, String password, HttpSession session){
         User user = new User(username,password);
@@ -33,21 +31,18 @@ public class SigninAndSignupController {
         return new AppResult("用户名或密码错误");
     }
     @RequestMapping("signup.do")
-    public @ResponseBody AppResult signup(@NotEmpty(message = "用户名不能为空") @Length(max = 16) String username,
-                            @NotEmpty @Length(min = 6,max = 16) String password,
-                            @NotEmpty @Length(min = 6,max = 16) String confirmPsw,
-                            @Length(max = 60) String motto,
-                            Integer gender){
+    public @ResponseBody AppResult signup(User user,String confirmPsw){
 
-        if (password != confirmPsw){
+        if (!user.getPassword().equals(confirmPsw)){
             return new AppResult("两次密码不一致");
         }
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setMotto(motto);
-        user.setGender(gender);
-        userDAO.save(user);
+
+        userService.save(user);
         return new AppResult();
+    }
+    @RequestMapping("/signout")
+    public String signout(HttpSession session){
+        session.removeAttribute("user");
+        return "index";
     }
 }

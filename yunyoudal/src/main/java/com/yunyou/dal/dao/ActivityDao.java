@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +25,6 @@ public interface ActivityDao extends JpaRepository<Activity, Long> {
 
     @Override
     Page<Activity> findAll(Pageable pageable);
-
-
+    Page findByExpenseLessThanEqualAndStartTimeGreaterThanEqualAndDaysLessThanEqualAndPublisherInAndCityIdsLike(Integer expense, Date date,Integer days,Collection<Long> Ids,String cityCode, Pageable pageable);
+    Page findByExpenseLessThanEqualAndStartTimeGreaterThanEqualAndDaysLessThanEqualAndCityIdsLike(Integer expense, Date date,Integer days, String cityCode,Pageable pageable);
 }

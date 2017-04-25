@@ -2,6 +2,7 @@ package com.yunyou.dal.entity;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,23 +12,25 @@ import java.util.Date;
  * Created by lds on 2016/12/18.
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class User implements Serializable{
     private static final long serialVersionUID = 7621305592543119629L;
     @Id
+    @GeneratedValue
     private Long id;
     private String email;
     private String username;
     private String password;
     private String picUrl;
     private String motto;
-    private Integer gender;
+    private int gender;
 
     private String visitedCities;
     private String goalCities;
-    private Integer fans;
-    private Integer stars;
-    private Integer dynamic_num;
-    private Integer strategy_num;
+    private int fans;
+    private int stars;
+    private int dynamicNum;
+    private int strategyNum;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -39,6 +42,9 @@ public class User implements Serializable{
     public Long getId() {
         return id;
     }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User() {
     }
@@ -48,9 +54,6 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -132,20 +135,20 @@ public class User implements Serializable{
         this.stars = stars;
     }
 
-    public Integer getDynamic_num() {
-        return dynamic_num;
+    public Integer getDynamicNum() {
+        return dynamicNum;
     }
 
-    public void setDynamic_num(Integer dynamic_num) {
-        this.dynamic_num = dynamic_num;
+    public void setDynamicNum(Integer dynamicNum) {
+        this.dynamicNum = dynamicNum;
     }
 
-    public Integer getStrategy_num() {
-        return strategy_num;
+    public Integer getStrategyNum() {
+        return strategyNum;
     }
 
-    public void setStrategy_num(Integer strategy_num) {
-        this.strategy_num = strategy_num;
+    public void setStrategyNum(Integer strategyNum) {
+        this.strategyNum = strategyNum;
     }
 
     public Date getCreateTime() {

@@ -1,6 +1,7 @@
 package com.yunyou.dal.entity;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.util.Date;
  * Created by dell on 2017/3/18.
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Message implements Serializable{
     private static final long serialVersionUID = 386532739580677509L;
     @Id

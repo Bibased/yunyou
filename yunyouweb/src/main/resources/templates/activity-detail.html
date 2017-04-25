@@ -4,12 +4,16 @@
     <title>Wander.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/css/reset.css" rel="stylesheet">
     <link href="static/css/common.css" rel="stylesheet">
-
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/vue.js"></script>
+    <script src="static/js/common.js"></script>
+    <script src="static/js/distpicker.data.js"></script>
+    <script src="static/js/distpicker.js"></script>
     <style>
         .active-summary li{
             margin-right: 30px;
@@ -20,34 +24,47 @@
     </style>
 </head>
 <body>
+<div id="main-container">
     <div class="web-container">
         <div  id="header-container" th:replace="~{header::header}"></div>
         <div  class="flex-container">
             <div  class="left-container">
-                <div class="active-container">
-                    <h4>迪拜 五天四夜土豪之旅</h4>
+                <div class="active-container" id="item-detail">
+                    <h4>{{item.title}}</h4>
                     <ul class="active-summary ul-inline">
                         <li ><span class="glyphicon glyphicon-calendar"></span> 16/3/11 - 16/3/15</li>
-                        <li ><span class="icon-group"></span> 10人已报名/20成团</li>
-                        <li ><span class="glyphicon icon-heart-empty"></span> 60</li>
-                        <li ><span class="glyphicon icon-money"></span> 30000元/人</li>
+                        <li ><span class="icon-group"></span> {{item.nowHC}}人已报名/上限{{item.maxHC}}人</li>
+                        <li ><span class="icon-eye-close"></span> {{item.focusCount}}</li>
+                        <li ><span class="glyphicon icon-money"></span> {{item.expense}}元/人</li>
                         <li class="join"><button class="btn btn-success">加入</button></li>
                     </ul>
+                    <div v-html="item.content"></div>
                 </div>
             </div>
 
-            <div  class="right-container" th:insert="~{activity-right::activity-right}" id="activity-right"></div>
+            <div  class="right-container" th:insert="~{/component/activity-right::activity-right}" id="activity-right"></div>
 
             <div id="footer-container" th:insert="~{footer::footer}"></div>
+        </div>
     </div>
-    </div>
-        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-        <script src="static/js/jquery-2.0.0.js"></script>
-        <script src="static/js/common.js"></script>
 
-        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-        <script src="static/js/bootstrap.min.js"></script>
-        <script src="static/js/distpicker.data.js"></script>
-        <script src="static/js/distpicker.js"></script>
+</div>
+        <script>
+            var id = GetRequest()["id"];
+            var detailApp = new Vue({
+                el:"#item-detail",
+                data:{
+                    item:''
+                },
+                methods:{
+                    fetch:function () {
+                    $.ajax({url:"activity/detail",data:{id:id}}).success(function (res,status,jqXHR) {
+                        detailApp.item = res;
+                    });
+                    }
+                }
+            });
+            detailApp.fetch();
+        </script>
 </body>
 </html>

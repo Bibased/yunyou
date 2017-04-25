@@ -2,6 +2,7 @@ package com.yunyou.dal.entity;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.util.Date;
  * Created by Liujinglin on 17/3/18.
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Dynamic implements Serializable{
     private static final long serialVersionUID = 2838348336916747718L;
     @Id
@@ -19,12 +21,11 @@ public class Dynamic implements Serializable{
     private Long publisher;
     private String content;
     private String country;
-    private Long cityId;
     private String picUrls;
     private String location;
     private String comments;
-    private Integer likeCount;
-    private Integer shareCount;
+    private int likeCount;
+    private int shareCount;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createTime;
@@ -53,14 +54,6 @@ public class Dynamic implements Serializable{
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public Long getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Long cityId) {
-        this.cityId = cityId;
     }
 
     public String getPicUrls() {

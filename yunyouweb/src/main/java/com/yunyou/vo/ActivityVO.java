@@ -1,27 +1,20 @@
-package com.yunyou.dal.entity;
+package com.yunyou.vo;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
- * Created by Liujinglin on 17/3/19.
+ * Created by lds on 2017/4/24.
  */
-@Entity
-@EntityListeners(AuditingEntityListener.class)
-public class Activity {
-    @Id
-    @GeneratedValue
+public class ActivityVO implements Serializable{
+    private static final long serialVersionUID = -6807137154774181921L;
     private Long id;
     private Long publisher;
+    private String publisherName;
+    private String summary;
     private String title;
     private String content;
     private String coverUrl;
-    private String summary;
     // 旅游花费
     private int expense;
     private int maxHC;
@@ -32,18 +25,12 @@ public class Activity {
     private int focusCount;
     // 活动天数
     private int days;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
-    @Temporal(TemporalType.DATE)
     private Date endTime;
     // 报名截止时间
-    @Temporal(TemporalType.DATE)
     private Date deadline;
     private String cityIds;
     private String cityNames;
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
     private Date createTime;
 
     public Long getId() {
@@ -60,6 +47,14 @@ public class Activity {
 
     public void setPublisher(Long publisher) {
         this.publisher = publisher;
+    }
+
+    public String getPublisherName() {
+        return publisherName;
+    }
+
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
     }
 
     public String getTitle() {

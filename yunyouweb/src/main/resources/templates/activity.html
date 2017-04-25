@@ -4,12 +4,18 @@
     <title>Wander.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/css/reset.css" rel="stylesheet">
     <link href="static/css/common.css" rel="stylesheet">
-
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="static/js/jquery-2.0.0.js"></script>
+    <script src="static/js/moment.js"></script>
+    <script src="static/js/vue.js"></script>
+    <script src="static/js/common.js"></script>
+    <!-- 最新的 Bootstrap 核 JavaScript 文件 -->
+    <script src="static/js/distpicker.data.js"></script>
+    <script src="static/js/distpicker.js"></script>
     <style>
         #pickForm{
             margin-bottom: 20px;
@@ -81,7 +87,7 @@
             height: 30px;
             margin-bottom: 10px;
         }
-        .calendar .date{
+        .calendar .createTime{
             font-size:18px;
             margin-top: -18px;
             display: inline-block;
@@ -95,33 +101,33 @@
     <div class="web-container">
         <div  id="header-container" th:replace="~{header::header}"></div>
         <div  class="flex-container">
-            <div  class="left-container">
+            <div  class="left-container"  id="page-box">
                 <form  id="pickForm">
 
-                    <div id="distpicker" data-toggle="distpicker">
+                    <div id="distpicker" >
                         <div class="form-group">
                             <span class="mr">目的地</span>
-                            <select  id="province1"></select>
-                            <select     id="city1"></select>
+                            <select  id="province1" onchange="filterCity()"></select>
+                            <select  id="city" onchange="filterCity()"></select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <span class="mr">价格</span>
-                        <select name="price" >
-                            <option value="0">不限</option>
+                        <span class="mr">费用</span>
+                        <select name="expense" v-model="expense" @change="getPage(1)">
+                            <option value="">不限</option>
                             <option value="3000">低于3000</option>
                             <option value="10000">低于10000</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <span class="mr">开始日期</span>
-                        <input type="date" name="start-date">
+                        <input type="date" name="startTime" v-model="startTime" @change="getPage(1)">
                     </div>
                     <div class="form-group">
                         <span class="mr">天数</span>
-                        <select name="days">
-                            <option value="0">无限制</option>
+                        <select name="days" v-model="days" @change="getPage(1)">
+                            <option value="">无限制</option>
                             <option value="10">少于10</option>
                             <option value="20">少于20</option>
                             <option value="30">少于30</option>
@@ -129,51 +135,68 @@
                     </div>
 
                 </form>
-                <div class="strategy-list">
-                    <div class="active-item">
-                        <div class="calendar"><span class="glyphicon glyphicon-calendar"></span><span class="date"> 2016.11.30-2016.12.02</span> </div>
-                        <div class="strategy-item">
-                        <figure class="strategy-left bg-cover" style="background-image: url('static/img/activity.JPG');">
-                        </figure>
-                        <div class="strategy-right">
-                           <div class="strategy-content">
-                               <h4 class="strategy-title one-line">迪拜 五天四夜土豪之旅</h4>
-                               <p class="strategy-brief">
-                                   In at lorem quam. Curabitur in massa tristique, laoreet quam in, mattis neque. Donec sagittis gravida ipsum sit amet consequat. Vivamus a efficitur sapien. Vestibulum in ultrices lorem. Integer ultricies ipsum et risus efficitur, vitae posuere nibh mollis. Vestibulum cursus elementum augue, a bibendum tellus eleifend a. Praesent viverra tortor sit amet varius ornare. Vivamus maximus neque id enim suscipit vestibulum.
-                               </p>
-                           </div>
-                            <ul class="strategy-footer">
-                                <li><span class="glyphicon glyphicon-map-marker"></span>Barcelona</li>
-                                <li><span class="glyphicon glyphicon-user"></span> Daley</li>
-                                <li><span class="glyphicon icon-group"></span> 7人已报名</li>
-                                <li class="grey time">发起于 16-11-10</li>
-                            </ul>
+                <ul class="activity-list" >
+                <li class="active-item" v-for="item in items">
+                <div class="calendar"><span class="glyphicon glyphicon-calendar"></span>
+                    <span class="createTime"> {{item.startTime | moment }} - {{item.endTime | moment }}</span> </div>
+                <div class="strategy-item">
+                    <a :href="'/activity-detail.html?id='+item.id" class="link-box">
+                        <figure class="strategy-left bg-cover" :style="'background-image: url('+item.coverUrl+')'"></figure>
+                    </a>
+                    <div class="strategy-right">
+                        <div class="strategy-content">
+
+                            <a :href="'/strategy-detail.html?id='+item.id" class="link-box">
+                                <h4 class="strategy-title one-line">{{item.title}}</h4>
+                                <p class="strategy-brief">{{item.summary}}</p>
+                            </a>
                         </div>
+                        <ul class="strategy-footer">
+                            <li><span class="glyphicon glyphicon-user"></span> {{item.publisherName}}</li>
+                            <li><span class="glyphicon icon-group"></span> {{item.nowHC}}人已报名</li>
+                            <li class="grey time">发起于 {{item.createTime | moment }}</li>
+                        </ul>
                     </div>
-                    </div>
-
                 </div>
-
+            </li>
+            </ul>
+                <ul class="pager">
+                    <li class="previous"><a v-on:click="prev()"> 前一页</a></li>
+                    <li>{{currentPage}}/{{totalPage}}</li>
+                    <li class="next"><a v-on:click="next()">下一页</a></li>
+                </ul>
             </div>
 
-            <div  class="right-container" th:insert="~{activity-right::activity-right}" id="activity-right"></div>
+            <div  class="right-container" th:insert="~{/component/activity-right::activity-right}" id="activity-right"></div>
 
         </div>
         <div id="footer-container" th:insert="~{footer::footer}"></div>
     </div>
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="static/js/jquery-2.0.0.js"></script>
-    <script src="static/js/common.js"></script>
-    <!-- 最新的 Bootstrap 核 JavaScript 文件 -->
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/distpicker.data.js"></script>
-    <script src="static/js/distpicker.js"></script>
+
     <script>
-        $("#distpicker").distpicker({
-            province: '所有',
-            city: '所有',
-            district: ''
+        var url = "/activity/query";
+        var Request = new GetRequest();
+        var userId = Request["uid"];
+        var cityCode = $("#city option:selected").attr("data-code");
+        var app = getItemsApp(url,userId,cityCode);
+        app.startTime = moment().format("YYYY-MM-DD");
+        app.getPage(1);
+
+        $(function () {
+            $("#distpicker").distpicker({
+                province: '所有',
+                city: '所有',
+                district: ''
+            });
         });
+        Vue.filter('moment', function (value, formatString) {
+            formatString = formatString || 'YY/MM/DD';
+            return moment(value).format(formatString);
+        });
+        function filterCity() {
+            app.cityCode = $("#city option:selected").attr("data-code");
+            app.getPage(1);
+        }
     </script>
 </body>
 </html>

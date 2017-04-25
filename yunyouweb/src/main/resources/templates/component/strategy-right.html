@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div  th:fragment="strategy-right">
+        <style>
+            .collect-list{
+                width: 100%;
+            }
+            .collect-item{
+                margin-bottom: 6px;
+            }
+        </style>
+        <p class="publish-trigger"><a href="/strategy-publish.html"> <span class="glyphicon glyphicon-plus-sign"></span>发布</a></p>
+        <hr/>
+        <p class="followings"><span class="glyphicon glyphicon-list"></span> 关注的人</p>
+        <div th:replace="~{/component/user-list::user-list}"></div>
+        <hr/>
+        <!--<p class="collect-title"><span class="glyphicon glyphicon-bookmark"></span> 我的收藏</p>-->
+        <!--<ul class="collect-list">-->
+            <!--<li class="collect-item one-line"><a>巴塞罗那，吃喝玩乐全纪录啦啦啦！</a></li>-->
+        <!--</ul>-->
+        <script>
+            var starApp = getStarApp("/strategy.html");
+            starApp.getStars();
+        </script>
+    </div>
+</body>
+</html>

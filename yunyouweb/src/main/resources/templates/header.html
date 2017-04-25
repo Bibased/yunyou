@@ -5,25 +5,28 @@
 <body>
         <div id="header" th:fragment="header">
             <div class="col3" id="site-logo">
-                <a >WANDER</a>
+                <a href="/index.html">WANDER</a>
             </div>
             <div class="col6">
                 <ul id="nav" >
                     <li class="tab" id="dynamic"><a href="/dynamic.html">动态</a> </li>
-                    <li class="tab" id="advice"><a href="/dynamic.html">攻略</a></li>
-                    <li class="tab" id="activity"><a href="/dynamic.html">活动</a></li>
+                    <li class="tab" id="advice"><a href="/strategy.html">攻略</a></li>
+                    <li class="tab" id="activity"><a href="/activity.html">活动</a></li>
                 </ul>
             </div>
 
             <div class="col3" >
                <div id="header-right">
-                   
-
-                   <div id="user-group" th:if="">
-                       <!--<img id="user-pic" src="static/img/user.jpg">
-                       <span class="badge">12</span>-->
-                       <a href="/signin.html">登录</a>
-                       <a href="/signup.html">注册</a>
+                   <div id="user-group" >
+                       <div th:if="${session.user == null}">
+                           <a href="/signin.html">登录</a>
+                           <a href="/signup.html">注册</a>
+                       </div>
+                       <div th:if="${session.user != null}">
+                           <a th:text="${session.user.username}"></a>
+                           <a href="/signout.do">注销</a>
+                           <!--<span class="badge">12</span>-->
+                       </div>
                    </div>
 
                    <div id="search-box" class="ib">
