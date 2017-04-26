@@ -42,7 +42,7 @@
                success:function(data,textStatus,jqXHR){
                    console.log(data);
                    if (data.isSuccess){
-                       location.href = document.referrer;
+                       location.href = "/index.html";
                    }else alert(data.failedMsg);
                }
            });

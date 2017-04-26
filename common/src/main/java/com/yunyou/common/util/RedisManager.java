@@ -17,11 +17,11 @@ public class RedisManager {
 //        reader.auth("1qazxS");
     }
     public static String setObj(String key,Serializable obj){
-        String res = reader.set(key, new Gson().toJson(obj));
+        String res = writer.set(key, new Gson().toJson(obj));
         return res;
     }
     public static <T> T getObj(String key,Class<T> clz){
-        return new Gson().fromJson(writer.get(key),clz);
+        return new Gson().fromJson(reader.get(key),clz);
     }
 
     public static void main(String[] args) {

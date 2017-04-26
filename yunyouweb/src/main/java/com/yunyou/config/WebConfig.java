@@ -13,7 +13,7 @@ public class WebConfig {
     @Bean
     public FilterRegistrationBean filterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean(new UserFilter());
-        registration.addUrlPatterns("/activity.html","/dynamic.html","/strategy.html");
+        registration.addUrlPatterns("/activity.html","/dynamic.html","/strategy.html","/activity-detail.html","/strategy/detail.html");
         return registration;
     }
 }

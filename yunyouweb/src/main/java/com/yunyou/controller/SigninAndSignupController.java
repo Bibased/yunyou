@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * Created by dell on 2017/3/15.
@@ -40,9 +42,9 @@ public class SigninAndSignupController {
         userService.save(user);
         return new AppResult();
     }
-    @RequestMapping("/signout")
-    public String signout(HttpSession session){
+    @RequestMapping("/signout.do")
+    public void signout(HttpSession session, HttpServletResponse response) throws IOException {
         session.removeAttribute("user");
-        return "index";
+        response.sendRedirect("/index.html");
     }
 }

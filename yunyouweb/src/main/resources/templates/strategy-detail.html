@@ -41,7 +41,7 @@
 <body>
     <div id="main-container">
         <div class="web-container">
-            <div  id="header-container" th:replace="~{/header::header}"></div>
+            <div  id="header-container" th:replace="header::header"></div>
             <div  class="flex-container">
                 <div class="left-container">
                     <div class="strategy-container" th:object="${item}">
@@ -75,11 +75,11 @@
                     </div>
                 </div>
 
-                <div  class="right-container" th:insert="~{/component/strategy-right::strategy-right}">
+                <div  class="right-container" th:insert="component/strategy-right::strategy-right">
 
                 </div>
             </div>
-            <div id="footer-container" th:insert="~{/footer::footer}"></div>
+            <div id="footer-container" th:insert="footer::footer"></div>
         </div>
     </div>
 </body>

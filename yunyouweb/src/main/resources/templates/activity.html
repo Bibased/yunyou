@@ -146,7 +146,7 @@
                     <div class="strategy-right">
                         <div class="strategy-content">
 
-                            <a :href="'/strategy-detail.html?id='+item.id" class="link-box">
+                            <a :href="'/activity-detail.html?id='+item.id" class="link-box">
                                 <h4 class="strategy-title one-line">{{item.title}}</h4>
                                 <p class="strategy-brief">{{item.summary}}</p>
                             </a>
@@ -167,7 +167,7 @@
                 </ul>
             </div>
 
-            <div  class="right-container" th:insert="~{/component/activity-right::activity-right}" id="activity-right"></div>
+            <div  class="right-container" th:insert="component/activity-right::activity-right" id="activity-right"></div>
 
         </div>
         <div id="footer-container" th:insert="~{footer::footer}"></div>

@@ -1,6 +1,8 @@
 package com.yunyou.service;
 
 import com.yunyou.common.util.DataConvertUtil;
+import net.coobird.thumbnailator.Thumbnailator;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class FileService {
     @Value("${upload.file.home}")
     String fileDir ;
+    double maxSize = 80.0 * 1000;
     public String dealUploadImg(MultipartFile file,Long id){
         // 包含原始文件名的字符串
         String originName = file.getOriginalFilename();
@@ -26,14 +29,16 @@ public class FileService {
         String fileNameExtension = originName.substring(originName.indexOf("."), originName.length());
         // 生成实际存储的真实文件名
         String fileName = UUID.randomUUID().toString()+fileNameExtension;
+        File parent = new File(fileDir+"img/"+id);
+        if (!parent.exists()) parent.mkdirs();
         try {
-            File parent = new File(fileDir+"img/"+id);
-            if (!parent.exists()) parent.mkdirs();
-            file.transferTo(new File(parent,fileName));
+            double radio = 1;
+            if (file.getSize() > maxSize)
+                radio = Math.sqrt(maxSize / file.getSize());
+            Thumbnails.of(file.getInputStream()).scale(radio).toFile(new File(parent,fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         // 返回图片的URL地址
         return  "/static/img/"+id+"/"+fileName;
     }
