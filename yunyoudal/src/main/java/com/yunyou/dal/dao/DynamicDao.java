@@ -26,6 +26,8 @@ public interface DynamicDao extends JpaRepository<Dynamic, Long> {
 
     Dynamic findById(Long id);
     Page<Dynamic> findByPublisherIn(Collection<Long> Ids,Pageable pageable);
+    @Query("update  Dynamic set likeCount=likeCount+1 where id=?1")
+    void incLikeCount(Long id);
 
 
 }

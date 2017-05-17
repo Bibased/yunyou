@@ -4,7 +4,6 @@
     <title>Wander.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/css/reset.css" rel="stylesheet">
@@ -18,8 +17,8 @@
             width: 100%;
             height: 600px;
         }
-        #spot-carousel{
-            margin-top:-50px;
+        #header{
+            margin-bottom: 0 !important;
         }
         .carousel-indicators li{
             margin-right: 20px !important;
@@ -27,10 +26,7 @@
         #spot-carousel,.activities{
             margin-bottom:20px;
         }
-        .link-box{
-            display: inline-block;
-            overflow: visible;
-        }
+
         .one-line{
             width: 100%;
         }
@@ -39,7 +35,7 @@
 <body>
 <div id="main-container">
     <div class="web-container">
-    <div  id="header-container" th:insert="~{header::header}"></div>
+    <div  id="header-container" th:replace="~{header::header}"></div>
 
     <div class="main-content">
         <div id="spot-carousel">
@@ -63,24 +59,24 @@
         </div>
 
         <div class="activities" id="activity-list">
-        <div class="grid" >
-            <h4>活动</h4>
-            <figure v-for="item in items">
-                <a :href="'/activity-detail.html?id='+item.id" class="link-box">
-                    <img :src="item.coverUrl" />
-                <figcaption>
-                    <h2>{{item.title}}</h2>
-                    <div>
-                        <p> <span>{{item.publisherName}} 创建于 {{item.createTime | moment}}</span></p>
-                        <p><span>￥{{item.expense}} </span><span>{{item.startTime | moment}} --{{item.endTime | moment}}</span> </p>
-                        <p><span> {{item.nowHC}}/{{item.minHC}} 已报名 </span> </p>
-                    </div>
-                </figcaption>
-                <div class="favor"><span class="icon-eye-open"></span>{{item.focusCount}}</div>
-                </a>
-            </figure>
+            <div class="grid" >
+                <h4>活动</h4>
+                <figure v-for="item in items">
+                    <a :href="'/activity-detail.html?id='+item.id" class="link-box">
+                        <img :src="item.coverUrl" />
+                    <figcaption>
+                        <h2>{{item.title}}</h2>
+                        <div>
+                            <p> <span>{{item.publisherName}} 创建于 {{item.createTime | moment}}</span></p>
+                            <p><span>￥{{item.expense}} </span><span>{{item.startTime | moment}} --{{item.endTime | moment}}</span> </p>
+                            <p><span> {{item.nowHC}}/{{item.minHC}} 已报名 </span> </p>
+                        </div>
+                    </figcaption>
+                    <!--<div class="favor"><span class="icon-eye-open"></span>{{item.focusCount}}</div>-->
+                    </a>
+                </figure>
+            </div>
         </div>
-    </div>
 
         <div class="strategy" id="strategy-list">
         <div class="grid">
@@ -96,7 +92,7 @@
                         <p><span class="one-line">{{item.summary}}</span></p>
                     </div>
                 </figcaption>
-                <div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>{{item.likeCount}}</div>
+                <!--<div class="favor"><span class="glyphicon glyphicon-heart-empty"></span>{{item.likeCount}}</div>-->
                 </a>
             </figure>
         </div>

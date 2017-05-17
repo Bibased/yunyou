@@ -98,13 +98,15 @@
                     <div v-if="totalPage>0">
                         <ul id="dyn-ul">
                             <li  class="dynamic-item" v-for="item in items">
-                                <figure class="user-figure">
-                                    <img v-bind:src="item.userPic">
-                                    <figcaption>
-                                        <h5>{{item.publisher}}</h5>
-                                        <h5 class="grey">{{item.publishTime}}</h5>
-                                    </figcaption>
-                                </figure>
+                                <a :href="'/user.html?id='+item.publisher" class="link-box">
+                                    <figure class="user-figure">
+                                        <img v-bind:src="item.userPic">
+                                        <figcaption>
+                                            <h5>{{item.publisherName}}</h5>
+                                            <h5 class="grey">{{item.publishTime}}</h5>
+                                        </figcaption>
+                                    </figure>
+                                </a>
                                 <div class="dynamic-content">
                                     <h5>{{item.content}}</h5>
                                     <div class="pic-list" >

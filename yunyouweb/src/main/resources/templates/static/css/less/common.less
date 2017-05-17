@@ -40,7 +40,7 @@
 #nav li{
   display:inline-block;
   float: left;
-  font-size:1.7em;
+  font-size:1.5em;
   color:@bcol;
   margin: 0 1em;
   padding-bottom: 0.5em;
@@ -54,9 +54,11 @@
   margin-top: @headerHeight/4;
 }
 #header-right a{
-  display: inline-block;
+  display: block;
+  float: left;
   height: 36px;
-  margin: 5px 0;
+  line-height: 36px;
+  margin-left:7px;
 }
 #user-group{
   height: 36px;
@@ -88,7 +90,8 @@
 #user-pic{
   width: 30px;
   height: 30px;
-  border-radius: 30px;
+  border-radius: 50%;
+  vertical-align:top;
 }
 //header-end
 

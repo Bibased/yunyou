@@ -4,6 +4,7 @@ import ch.qos.logback.core.rolling.helper.RenameUtil;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.name.Rename;
 import org.junit.Test;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,10 +15,8 @@ import java.io.IOException;
 public class NormalTest {
     @Test
     public void test() throws IOException {
-        File file = new File("F:\\workspace\\yunyou\\yunyouweb\\src\\main\\resources\\templates\\static\\img\\sp0.jpeg");
-        double ratio = 1;
-        if (file.length() > 640*320)
-            ratio = 640.0*320/file.length();
-        Thumbnails.of(file).scale(ratio).outputFormat("jpg").toFiles(Rename.PREFIX_DOT_THUMBNAIL);
+        String hashed = BCrypt.hashpw("654321",BCrypt.gensalt());
+        System.out.println(hashed);
+        System.out.println(BCrypt.hashpw("654321",hashed));
     }
 }

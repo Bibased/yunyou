@@ -1,0 +1,263 @@
+html{
+  min-width: 768px;
+}
+
+.my-container{
+  width: 100%;
+}
+/*naviagtion start*/
+.nav-wrap{
+  overflow: hidden;
+}
+.nav-logo{
+  font-family: cursive;
+  float: left;
+  line-height: 5rem;
+  font-size: 4rem;
+}
+
+.nav-panel{
+  float: right;
+}
+
+.nav-child{
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 1rem;
+}
+
+.nav-child-height{
+  height: 5rem;
+  width: 0;
+}
+
+.nav-child-search{
+  position: relative;
+}
+.nav-child-search input{
+  width: 18rem;
+  height: 3rem;
+  border-radius: 1rem;
+  padding-left: 2rem;
+}
+.nav-child-search i{
+  position: absolute;
+  top: 50%;
+  left: 0.6rem;
+  transform: translateY(-50%)
+}
+
+.nav-child-notice span{
+  font-size: 2.5rem;
+}
+
+.nav-child-avatar img{
+  height: 4rem;
+  width: 4rem;
+}
+
+.nav-child-name span{
+  font-size: 2rem;
+}
+/*navigation end*/
+
+/*nav-jumbotron-content begin*/
+.nav-jumbotron-content{
+  background: url(../img/bg.jpg);
+  background-size: cover;
+  background-position: center;
+  color: white;
+  height: 40rem;
+  position: relative;
+}
+
+.user-info{
+  position: absolute;
+  left: 50%;
+  top: 10rem;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 4px black;
+}
+
+.user-avatar img{
+  width: 9rem;
+  height: 9rem;
+}
+
+.user-name{
+  margin-top: 1rem;
+}
+
+.user-follow span{
+  display: inline-block;
+  width: 6rem;
+  line-height: 1.5;
+  border: solid 1px white;
+  box-shadow: 1px 1px 20px black;
+  margin-top: 1rem;
+}
+
+.user-slogan{
+  margin-top: 1.5rem;
+}
+
+.user-map a{
+  color: white;
+}
+.user-map i{
+  color: yellow;
+}
+.user-map{
+  position: absolute;
+  right: 5rem;
+  bottom: 5rem;
+  font-size: 1.5rem;
+}
+
+/*nav-jumbotron-content end*/
+
+/*conten begin*/
+.content{
+  margin-top: 2rem;
+}
+.menu li{
+  cursor: pointer;
+}
+
+.user-thumbnail-wrap{
+  width: 49%;
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  cursor: pointer;
+}
+
+.user-thumbnail{
+  background-color: #f5f5f5;
+  padding: 1rem;
+  position: relative;
+}
+
+.user-thumbnail > div{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.my-thumbnail{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.my-thumbnail img{
+  width: 8rem;
+  height: 8rem;
+  border-radius: 8rem;
+}
+.user-thumbnail .info{
+  height: 10rem;
+  margin-left: 9rem;
+  padding-left: 1rem;
+  border-left: solid 2px white;
+}
+
+.user-thumbnail .info .name{
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.user-thumbnail .info .follow i{
+  color: #9d9d9d;
+  margin-right: 1rem;
+}
+
+.user-thumbnail .info .introduce{
+  height: 3.6rem;
+  line-height: 1.2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+/*content end*/
+
+/*tarve-plan begin*/
+#sub-menu-4{
+  position: relative;
+}
+.plan-button{
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #337ab7;
+  font-size: 1.5rem;
+  background-color: #d9edf7;
+  padding: 0.5rem 1.8rem;
+  border-radius: 1rem;
+}
+.travel-plan{
+  position: relative;
+  height: 30rem;
+}
+
+
+.travel-plan .picture img{
+  width: 22rem;
+}
+
+.travel-plan .checkbox-wrap{
+  position: absolute;
+  font-size: 3rem;
+  color: #2fa931;
+  top: 6rem;
+  left: 24rem;
+}
+
+.travel-plan .location-name{
+  font-size: 2.5rem;
+  color: #555;
+}
+
+.travel-plan .date{
+  font-size: 1.4rem;
+  position: relative;
+  top: -1rem;
+}
+
+.travel-plan .introduce{
+  font-size: 1.1rem;
+  position: absolute;
+  left: 28rem;
+  top: 12rem;
+}
+
+.travel-plan .line-top{
+  width: 4px;
+  height: 7rem;
+  position: absolute;
+  left: 25.2rem;
+  top: 0;
+  background-color: #2fa931;
+}
+
+.travel-plan:first-child .line-top{
+  display: none;
+}
+
+.travel-plan .line-bottom{
+  width: 4px;
+  height: 20.5rem;
+  position: absolute;
+  left: 25.2rem;
+  bottom: 0;
+  background-color: #2fa931;
+}
+
+.travel-plan:last-child .line-bottom{
+  display: none;
+}
+
+.my-active{
+  color:#337ab7;
+}
+/*tarvel-plan end*/

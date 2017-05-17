@@ -10,9 +10,11 @@ import java.io.Serializable;
 public class RedisManager {
     public static final String HOST="139.199.94.18";
     public static final int PORT=6379;
-    public static Jedis reader = new Jedis(HOST,PORT);
-    public static Jedis writer = new Jedis(HOST,PORT);
+    public static Jedis reader ;
+    public static Jedis writer ;
     static {
+//        reader =  new Jedis(HOST,PORT);
+//        writer =  new Jedis(HOST,PORT);
         //TODO
 //        reader.auth("1qazxS");
     }
@@ -24,9 +26,5 @@ public class RedisManager {
         return new Gson().fromJson(reader.get(key),clz);
     }
 
-    public static void main(String[] args) {
-        System.out.println(reader.get("test"));
-        writer.set("test","test");
-        System.out.println(reader.get("test"));
-    }
+
 }

@@ -1,7 +1,6 @@
 package com.yunyou.vo;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,8 +9,9 @@ import java.util.List;
 public class DynamicVo implements Serializable {
     private static final long serialVersionUID = -5983362503665917230L;
     private Long id;
+    private Long publisher;
     //发表人
-    private String publisher;
+    private String publisherName;
     private String userPic;
     private String content;
     private String country;
@@ -22,6 +22,14 @@ public class DynamicVo implements Serializable {
     private Integer shareCount;
     private String publishTime;
 
+    public Long getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Long publisher) {
+        this.publisher = publisher;
+    }
+
     public Long getId() {
         return id;
     }
@@ -30,12 +38,12 @@ public class DynamicVo implements Serializable {
         this.id = id;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public String getPublisherName() {
+        return publisherName;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
     }
 
     public String getUserPic() {

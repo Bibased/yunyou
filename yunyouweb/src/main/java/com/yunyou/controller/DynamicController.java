@@ -2,10 +2,11 @@ package com.yunyou.controller;
 import com.yunyou.common.AppResult;
 import com.yunyou.common.constant.GlobalConstant;
 import com.yunyou.common.util.DataConvertUtil;
-import com.yunyou.dal.cache.CacheDAO;
 import com.yunyou.dal.cache.co.UserCO;
 import com.yunyou.dal.dao.DynamicDao;
+import com.yunyou.dal.dao.DynamicUserDAO;
 import com.yunyou.dal.entity.Dynamic;
+import com.yunyou.dal.entity.DynamicUser;
 import com.yunyou.service.FileService;
 import com.yunyou.service.UserService;
 import com.yunyou.util.SessionUtil;
@@ -31,6 +32,8 @@ import java.util.stream.Collectors;
 public class DynamicController {
     @Resource
     private DynamicDao dynamicDao;
+    @Resource
+    private DynamicUserDAO dynamicUserDAO;
     @Resource
     private UserService userService;
     @Resource
@@ -62,13 +65,25 @@ public class DynamicController {
         }
         return new AppResult();
     }
+    @RequestMapping("thumbup")
+    public AppResult thumbup(Long dynamicId,HttpSession session){
+        Long userId = SessionUtil.getUserId(session);
+        if (null == dynamicUserDAO.findByUserIdAndDynamicId(userId,dynamicId))
+        {
+            dynamicUserDAO.save(new DynamicUser(userId,dynamicId));
+            dynamicDao.incLikeCount(dynamicId);
+            return new AppResult();
+        }
+        else return new AppResult("你已经赞过了~~");
+    }
+
 
     public Page convertToVO(Page<Dynamic> dynamicPage,Pageable pageable){
         List list = dynamicPage.getContent().stream().map(dynamic -> {
             DynamicVo dynamicVo = new DynamicVo();
             BeanUtils.copyProperties(dynamic,dynamicVo);
             UserCO userCO = userService.query(dynamic.getPublisher());
-            dynamicVo.setPublisher(userCO.getUsername());
+            dynamicVo.setPublisherName(userCO.getUsername());
             dynamicVo.setUserPic(userCO.getUserPic());
             dynamicVo.setPicUrlList(DataConvertUtil.toList(dynamic.getPicUrls()));
             dynamicVo.setCommentList(DataConvertUtil.toList(dynamic.getComments()));

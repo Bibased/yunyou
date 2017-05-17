@@ -38,6 +38,10 @@ body {
 .bg-cover {
   background-size: cover;
 }
+.link-box {
+  display: inline-block;
+  overflow: visible;
+}
 ul,
 menu,
 dir {
