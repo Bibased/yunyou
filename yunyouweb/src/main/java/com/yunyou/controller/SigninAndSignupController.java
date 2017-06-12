@@ -43,6 +43,7 @@ public class SigninAndSignupController {
         }
         String hashed = BCrypt.hashpw(user.getPassword(),BCrypt.gensalt());
         user.setPassword(hashed);
+        user.setPicUrl("/static/img/default_user.jpg");
         userService.save(user);
         return new AppResult();
     }

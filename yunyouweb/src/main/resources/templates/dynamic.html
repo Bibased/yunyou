@@ -217,9 +217,7 @@
                     console.log(data);
                     if (data.isSuccess){
                        alert("发布成功");
-                       setInterval(function () {
-                           location.reload();
-                       },90);
+                        location.reload();
                     }else alert(data.failedMsg);
                 }
             });

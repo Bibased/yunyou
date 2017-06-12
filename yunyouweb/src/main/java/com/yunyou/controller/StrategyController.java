@@ -70,7 +70,7 @@ public class StrategyController {
             strategyVO.setPublisherName(userCO.getUsername());
             return strategyVO;
         }).collect(Collectors.toList());
-        return new PageImpl(list,pageable,page.getTotalPages());
+        return new PageImpl(list,pageable,page.getTotalElements());
     }
     @RequestMapping("publish")
     @ResponseBody

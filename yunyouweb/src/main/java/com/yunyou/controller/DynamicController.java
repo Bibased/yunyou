@@ -12,6 +12,7 @@ import com.yunyou.service.UserService;
 import com.yunyou.util.SessionUtil;
 import com.yunyou.vo.DynamicVo;
 import org.springframework.beans.BeanUtils;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -90,6 +92,6 @@ public class DynamicController {
             dynamicVo.setPublishTime(DataConvertUtil.fromDate(dynamic.getCreateTime()));
             return dynamicVo;
         }).collect(Collectors.toList());
-        return new PageImpl(list,pageable,dynamicPage.getTotalPages());
+        return new PageImpl(list,pageable,dynamicPage.getTotalElements());
     }
 }

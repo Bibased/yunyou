@@ -3,8 +3,7 @@
  */
 var home = "/index.html";
 $(function () {
-    $("#header-container").load("header.html");
-    $("#footer-container").load("footer.html");
+
 });
 function createEditor() {
     var editor = new wangEditor('editor');
@@ -59,7 +58,7 @@ function getItemsApp(url,userId,cityCode) {
             expense:'',
             startTime:'',
             days:'',
-            size:1
+            size:2
         },
         methods:{
             prev: function (){
@@ -99,16 +98,17 @@ function GetRequest() {
     }
     return theRequest;
 }
-function getStarApp(jumpUrl) {
+function getStarApp(jumpUrl,addSelf) {
     var starApp = new Vue({
         el:"#star-list",
         data:{
             stars:'',
-            jumpUrl:jumpUrl
+            jumpUrl:jumpUrl,
+            addSelf:addSelf
         },
         methods:{
             getStars:function() {
-                $.ajax({url:'/user/star/query'}).success(function (res,status,jqXHR){
+                $.ajax({url:'/user/star/query',addSelf:starApp.addSelf}).success(function (res,status,jqXHR){
                     console.log(res);
                     starApp.stars = res;
                 });
@@ -119,20 +119,22 @@ function getStarApp(jumpUrl) {
 }
 function creteImgs(input) {
     var files = input.files;
-    var imgs =new Array();
+    var imgs =new Array(files.length);
+    var file;
+    var imgURL;
     for(var i=0;i<files.length;i++){
         file = files[i];
-        console.log(file);
+        console.log("ok"+i);
         // 那么我们可以做一下诸如文件大小校验的动作
         if(file.size > 1024 * 1024 * 2) {
             alert('图片大小不能超过 2MB!');
             return false;
         }
-        // 获取 window 的 URL 工具
-        var URL = window.URL ;
-        // 通过 file 生成目标 url
-        var imgURL = URL.createObjectURL(file);
+        console.log("ok"+i);
+        imgURL = window.URL.createObjectURL(file);
         imgs[i]=imgURL;
-        return imgs;
+        console.log(imgs[i]);
+
     }
+    return imgs;
 }

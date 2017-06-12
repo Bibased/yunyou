@@ -73,7 +73,7 @@ public class ActivityController {
         List list = page.getContent().stream().map(activity -> {
            return convertToVO(activity);
         }).collect(Collectors.toList());
-        return new PageImpl(list,pageable,page.getTotalPages());
+        return new PageImpl(list,pageable,page.getTotalElements());
     }
     public ActivityVO convertToVO(Activity activity){
         ActivityVO activityVO = new ActivityVO();

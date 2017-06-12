@@ -80,7 +80,9 @@ html{
   font-size: 1.2rem;
   text-shadow: 1px 1px 4px black;
 }
-
+.user-avatar:hover{
+  opacity: 0.8;
+}
 .user-avatar img{
   width: 9rem;
   height: 9rem;
@@ -90,6 +92,9 @@ html{
   margin-top: 1rem;
 }
 
+.user-follow span:hover{
+  background: rgba(0,0,0,0.4);
+}
 .user-follow span{
   display: inline-block;
   width: 6rem;
@@ -116,6 +121,18 @@ html{
   font-size: 1.5rem;
 }
 
+.user-wander{
+  position: absolute;
+  left: 5rem;
+  bottom: 5rem;
+  font-size: 1.5rem;
+}
+.user-wander a{
+  color: white;
+}
+.user-wander i{
+  color: yellow;
+}
 /*nav-jumbotron-content end*/
 
 /*conten begin*/
@@ -259,5 +276,9 @@ html{
 
 .my-active{
   color:#337ab7;
+}
+
+.img-box:hover{
+  opacity: 0.3;
 }
 /*tarvel-plan end*/

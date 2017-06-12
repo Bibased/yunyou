@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Wander.com</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/font-awesome1.min.css" rel="stylesheet">
+	<link href="static/css/user.css" rel="stylesheet">
+	<link href="static/css/common.css" rel="stylesheet">
+	<link href="static/css/reset.css" rel="stylesheet">
+	<script src="static/js/jquery-2.0.0.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+	<style>
+		.user-avatar img{
+
+			border-radius: 50%;
+		}
+		#header{
+			margin-bottom: 0 !important;
+		}
+		.menu-content{
+			padding-left: 10px;
+		}
+	</style>
+</head>
+
+<body>
+<div id="main-container">
+    <div class="web-container">
+		<div th:insert="header::header"></div>
+		<section class="my-container">
+			<!--<nav class="container-fluid nav-wrap">-->
+			<!--<div class="nav-logo">-->
+			<!--<span>WANDER.com</span>-->
+			<!--</div>-->
+			<!--<div class="nav-panel">-->
+			<!--<div class="nav-child nav-child-height"></div>-->
+			<!--<div class="nav-child nav-child-search">-->
+			<!--<i class="fa fa-search" aria-hidden="true"></i>-->
+			<!--<input type="text" class="form-control" placeholder="Search for...">-->
+			<!--</div>-->
+			<!--<div class="nav-child nav-child-notice">-->
+			<!--<span class="fa fa-bell-o" aria-hidden="true"></span>-->
+			<!--</div>-->
+			<!--<div class="nav-child nav-child-avatar">-->
+			<!--<img src="static/img/avatar.jpg">-->
+			<!--</div>-->
+			<!--<div class="nav-child nav-child-name">-->
+			<!--<span>John</span>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</nav>-->
+			<div class="nav-jumbotron-content">
+				<div class="user-info">
+					<div class="user-avatar" onclick="browseFile()">
+						<img src="static/img/user2.jpg">
+					</div>
+					<input name="imgs" type="file" id="uploadImg"  accept="image/*" style="display: none;">
+
+					<div class="user-name">
+						<span>Bob</span>
+					</div>
+					<div class="user-follow">
+						<span>已关注</span>
+						<span style="display: none;background-color:#fa7d3c;border:none">+ 关注</span>
+					</div>
+					<div class="user-slogan">
+						<p>生活不只有苟且，还有诗和远方</p>
+					</div>
+				</div>
+				<div class="user-map" data-toggle="modal" data-target="#profileModal">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					<a >编辑资料</a>
+				</div>
+			</div>
+		</section>
+		<section class="content">
+
+			<div class="col3 menu">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<i class="fa fa-users" aria-hidden="true"></i>
+						<span>关注的人</span>
+						<span class="badge">1</span>
+					</li>
+					<li class="list-group-item">
+						<i class="fa fa-user" aria-hidden="true"></i>
+						<span>好友</span>
+						<span class="badge">1</span>
+					</li>
+					<li class="list-group-item">
+						<i class="fa fa-smile-o" aria-hidden="true"></i>
+						<span>粉丝</span>
+						<span class="badge">1</span>
+					</li>
+					<li class="list-group-item">
+						<i class="fa fa-binoculars" aria-hidden="true"></i>
+						<span>旅游计划</span>
+						<span class="badge">3</span>
+					</li>
+				</ul>
+			</div>
+			<div class="col9 menu-content">
+				<div id="sub-menu-1">
+					<div class="user-thumbnail-wrap">
+						<div class="user-thumbnail">
+							<div class="my-thumbnail">
+								<img src="static/img/user.png">
+							</div>
+							<div class="info">
+								<p class="name">John</p>
+								<p class="follow"><i class="fa fa-exchange" aria-hidden="true"></i>互相关注</p>
+								<p class="introduce">旅游宣言：这世界，用一生走完</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div id="sub-menu-2">
+					<div class="user-thumbnail-wrap">
+						<div class="user-thumbnail">
+							<div class="my-thumbnail">
+								<img src="static/img/user2.jpg">
+							</div>
+							<div class="info">
+								<p class="name">Bob</p>
+								<p class="follow"><i class="fa fa-exchange" aria-hidden="true"></i>互相关注</p>
+								<p class="introduce">旅游宣言：生活不只有苟且，还有诗和远方</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div id="sub-menu-3">
+					<div class="user-thumbnail-wrap">
+						<div class="user-thumbnail">
+							<div class="my-thumbnail">
+								<img src="static/img/user2.jpg">
+							</div>
+							<div class="info">
+								<p class="name">Bob</p>
+								<p class="follow"><i class="fa fa-exchange" aria-hidden="true"></i>互相关注</p>
+								<p class="introduce">旅游宣言：生活不只有苟且，还有诗和远方</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="sub-menu-4">
+					<div class="plan-button">
+						<i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+						<a>制定计划</a>
+					</div>
+					<div>
+						<div class="travel-plan">
+							<div class="picture">
+								<img src="static/img/travel-1.jpg">
+							</div>
+							<div class="checkbox-wrap">
+								<div class="checkoutbox">
+									<i class="fa fa-check-square-o" aria-hidden="true"></i>
+									<span class="location-name">南宁</span>
+									<span class="date">2016-05-01</span>
+								</div>
+							</div>
+							<div class="introduce">
+								<p>南宁建制于东晋大兴元年（公元318年），至今已有1690多年历史。[3]  南宁是一座历史悠久的边陲古城，同时也是一个以壮族为主的多民族和睦相处的现代化城市。得天独厚的自然条件，使得南宁满城皆绿，四季常青，有“绿城”的美誉。南宁处于中国华南、西南和东南亚经济圈的结合部，位于广西的西南部，
+									是连接东南沿海与西南内陆的重要枢纽，也是西部唯一的沿海省会城市，拥有沿海城市待遇和税收等多项优惠待遇。
+								</p>
+							</div>
+							<div class="line-top"></div>
+							<div class="line-bottom"></div>
+						</div>
+						<div class="travel-plan">
+							<div class="picture">
+								<img src="static/img/xian.jpg">
+							</div>
+							<div class="checkbox-wrap">
+								<div class="checkoutbox">
+									<i class="fa fa-check-square-o" aria-hidden="true"></i>
+									<span class="location-name">西安</span>
+									<span class="date">2016-10-01</span>
+								</div>
+							</div>
+							<div class="introduce">
+								<p>长安自古帝王都，其先后有西周、秦、西汉、新莽、东汉、西晋、前赵、前秦、后秦、西魏、北周、隋、唐13个王朝在此建都。[3]  居中国四大古都之首，是中国历史上建都朝代最多、帝都历史最长、影响力最大的古都[4]  。（资料来源于古都官方认定机构中国古都学会[4]  ）
+									西安是中华文明和中华民族重要发祥地之一，丝绸之路的东方起点。[5-6]  丰镐都城、秦阿房宫、兵马俑，汉未央宫、长乐宫，隋大兴城，唐大明宫、兴庆宫等勾勒出“长安情结”
+								</p>
+							</div>
+							<div class="line-top"></div>
+							<div class="line-bottom"></div>
+						</div>
+						<div class="travel-plan">
+							<div class="picture">
+								<img src="static/img/travel-1.jpg">
+							</div>
+							<div class="checkbox-wrap">
+								<div class="checkoutbox">
+									<i class="fa fa-check-square-o" aria-hidden="true"></i>
+									<span class="location-name">杭州</span>
+									<span class="date">2017-1-01</span>
+								</div>
+							</div>
+							<div class="introduce">
+								<p>杭州自秦朝设县治以来已有2200多年的历史，曾是吴越国和南宋的都城，是中国七大古都之一。
+									因风景秀丽，素有“人间天堂”的美誉。杭州得益于京杭运河和通商口岸的便利，以及自身发达的丝绸和粮食产业，
+									历史上曾是重要的商业集散中心。后来依托沪杭铁路等铁路线路的通车以及上海在进出口贸易方面的带动，轻工业发展迅速。
+								</p>
+							</div>
+							<div class="line-top"></div>
+							<div class="line-bottom"></div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+	<div  id="profileModal" class="modal fade" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<form class="form-container" method="POST" id="signupForm">
+						<div class="form-group">
+							<label  >用户名</label>
+							<input class="form-control" type="text" name="username"  required>
+						</div>
+
+						<div class="form-group">
+							<label  >漫步宣言</label>
+							<input class="form-control" name="motto" maxlength="60" >
+						</div>
+
+						<div class="form-group">
+							<label  >性别</label>
+							<ul class="gender-group">
+								<li><input type="radio" name="gender" value="0" checked>不告诉你</li>
+								<li><input type="radio" name="gender" value="1">男</li>
+								<li><input  type="radio" name="gender" value="2">女</li>
+							</ul>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary" id="signupBtn" >修改</button>
+						</div>
+
+
+					</form>
+					<hr/>
+					<form class="form-container" method="post"></form>
+				</div>
+			</div><!-- /.modal-content -->
+		</div>
+		</div><!-- /.modal -->
+
+	</div>
+</div>
+</body>
+<script src="static/js/user.js"></script>
+<script>
+    function browseFile() {
+        $("#uploadImg").click();
+    }
+	$(".user-follow span").click(function () {
+		$(".user-follow span").toggle();
+    });
+</script>
+</html>

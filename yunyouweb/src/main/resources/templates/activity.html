@@ -98,79 +98,81 @@
     </style>
 </head>
 <body>
-    <div class="web-container">
-        <div  id="header-container" th:replace="~{header::header}"></div>
-        <div  class="flex-container">
-            <div  class="left-container"  id="page-box">
-                <form  id="pickForm">
+    <div id="main-container">
+        <div class="web-container">
+            <div  id="header-container" th:replace="~{header::header}"></div>
+            <div  class="flex-container">
+                <div  class="left-container"  id="page-box">
+                    <form  id="pickForm">
 
-                    <div id="distpicker" >
+                        <div id="distpicker" >
+                            <div class="form-group">
+                                <span class="mr">目的地</span>
+                                <select  id="province1" onchange="filterCity()"></select>
+                                <select  id="city" onchange="filterCity()"></select>
+                            </div>
+                        </div>
+
                         <div class="form-group">
-                            <span class="mr">目的地</span>
-                            <select  id="province1" onchange="filterCity()"></select>
-                            <select  id="city" onchange="filterCity()"></select>
+                            <span class="mr">费用</span>
+                            <select name="expense" v-model="expense" @change="getPage(1)">
+                                <option value="">不限</option>
+                                <option value="3000">低于3000</option>
+                                <option value="10000">低于10000</option>
+                            </select>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <span class="mr">费用</span>
-                        <select name="expense" v-model="expense" @change="getPage(1)">
-                            <option value="">不限</option>
-                            <option value="3000">低于3000</option>
-                            <option value="10000">低于10000</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <span class="mr">开始日期</span>
-                        <input type="date" name="startTime" v-model="startTime" @change="getPage(1)">
-                    </div>
-                    <div class="form-group">
-                        <span class="mr">天数</span>
-                        <select name="days" v-model="days" @change="getPage(1)">
-                            <option value="">无限制</option>
-                            <option value="10">少于10</option>
-                            <option value="20">少于20</option>
-                            <option value="30">少于30</option>
-                        </select>
-                    </div>
-
-                </form>
-                <ul class="activity-list" >
-                <li class="active-item" v-for="item in items">
-                <div class="calendar"><span class="glyphicon glyphicon-calendar"></span>
-                    <span class="createTime"> {{item.startTime | moment }} - {{item.endTime | moment }}</span> </div>
-                <div class="strategy-item">
-                    <a :href="'/activity-detail.html?id='+item.id" class="link-box">
-                        <figure class="strategy-left bg-cover" :style="'background-image: url('+item.coverUrl+')'"></figure>
-                    </a>
-                    <div class="strategy-right">
-                        <div class="strategy-content">
-
-                            <a :href="'/activity-detail.html?id='+item.id" class="link-box">
-                                <h4 class="strategy-title one-line">{{item.title}}</h4>
-                                <p class="strategy-brief">{{item.summary}}</p>
-                            </a>
+                        <div class="form-group">
+                            <span class="mr">开始日期</span>
+                            <input type="date" name="startTime" v-model="startTime" @change="getPage(1)">
                         </div>
-                        <ul class="strategy-footer">
-                            <li><span class="glyphicon glyphicon-user"></span> {{item.publisherName}}</li>
-                            <li><span class="glyphicon icon-group"></span> {{item.nowHC}}人已报名</li>
-                            <li class="grey time">发起于 {{item.createTime | moment }}</li>
-                        </ul>
-                    </div>
+                        <div class="form-group">
+                            <span class="mr">天数</span>
+                            <select name="days" v-model="days" @change="getPage(1)">
+                                <option value="">无限制</option>
+                                <option value="10">少于10</option>
+                                <option value="20">少于20</option>
+                                <option value="30">少于30</option>
+                            </select>
+                        </div>
+
+                    </form>
+                    <ul class="activity-list" >
+                        <li class="active-item" v-for="item in items">
+                            <div class="calendar"><span class="glyphicon glyphicon-calendar"></span>
+                                <span class="createTime"> {{item.startTime | moment }} - {{item.endTime | moment }}</span> </div>
+                            <div class="strategy-item">
+                                <a :href="'/activity-detail.html?id='+item.id" class="link-box">
+                                    <figure class="strategy-left bg-cover" :style="'background-image: url('+item.coverUrl+')'"></figure>
+                                </a>
+                                <div class="strategy-right">
+                                    <div class="strategy-content">
+
+                                        <a :href="'/activity-detail.html?id='+item.id" class="link-box">
+                                            <h4 class="strategy-title one-line">{{item.title}}</h4>
+                                            <p class="strategy-brief">{{item.summary}}</p>
+                                        </a>
+                                    </div>
+                                    <ul class="strategy-footer">
+                                        <li><span class="glyphicon glyphicon-user"></span> {{item.publisherName}}</li>
+                                        <li><span class="glyphicon icon-group"></span> {{item.nowHC}}人已报名</li>
+                                        <li class="grey time">发起于 {{item.createTime | moment }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="pager">
+                        <li class="previous"><a v-on:click="prev()"> 前一页</a></li>
+                        <li>{{currentPage}}/{{totalPage}}</li>
+                        <li class="next"><a v-on:click="next()">下一页</a></li>
+                    </ul>
                 </div>
-            </li>
-            </ul>
-                <ul class="pager">
-                    <li class="previous"><a v-on:click="prev()"> 前一页</a></li>
-                    <li>{{currentPage}}/{{totalPage}}</li>
-                    <li class="next"><a v-on:click="next()">下一页</a></li>
-                </ul>
+
+                <div  class="right-container" th:insert="component/activity-right::activity-right" id="activity-right"></div>
+
             </div>
-
-            <div  class="right-container" th:insert="component/activity-right::activity-right" id="activity-right"></div>
-
+            <div id="footer-container" th:insert="~{footer::footer}"></div>
         </div>
-        <div id="footer-container" th:insert="~{footer::footer}"></div>
     </div>
 
     <script>
